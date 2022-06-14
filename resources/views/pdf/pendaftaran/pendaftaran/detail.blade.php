@@ -116,7 +116,7 @@
             <tr>
                 <th style="text-align: left">Tahun</th>
                 <td style="text-align: center">:</td>
-                <td style="padding-left: 10px">{{ $data->warna }}</td>
+                <td style="padding-left: 10px">{{ $data->tahun }}</td>
             </tr>
             <tr>
                 <th style="text-align: left">Tgl Pendaftaran</th>
