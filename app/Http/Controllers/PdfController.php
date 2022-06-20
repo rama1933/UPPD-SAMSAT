@@ -24,6 +24,16 @@ class PdfController extends Controller
         $this->TrxPendaftaranService = new TrxPendaftaranService;
     }
 
+    public function indexlaporanuser(Request $request)
+    {
+        return view('user.laporan');
+    }
+
+    public function indexlaporanadmin(Request $request)
+    {
+        return view('admin.laporan');
+    }
+
     public function indexjenispdf(Request $request)
     {
         $data['data'] = $this->MasterService->getDataJenis();

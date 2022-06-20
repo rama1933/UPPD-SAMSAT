@@ -1,65 +1,109 @@
 @extends('layouts.app')
 
 @section('custom_css')
+    <link rel="stylesheet" href="{{ asset('') }}carousel/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="{{ asset('') }}carousel/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
+    <link rel="stylesheet" href="{{ asset('') }}carousel/css/animate.css">
+    <link rel="stylesheet" href="{{ asset('') }}carousel/css/style.css">
 
 @endsection
 
 @section('content')
 <div class="row">
+<div class="col-xl-12 col-md-12 mb-2">
+    <div class="card  shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="h4 text-xl font-weight-bold text-uppercase text-center">
+                        Selamat Datang Di UPPD Samsat Kandangan</div>
 
-    <div class="col-md-12">
-        <div class="card card-user">
-            <div class="image">
-                <img src="{{ asset('/logo/bg.jpg')}}" alt="...">
-            </div>
-            <div class="card-body">
-                <div class="author">
-                    <a href="#">
-                        <img class="avatar border-gray" src="{{ asset('')}}paper/assets/img/user.png" alt="...">
-                        <h5 class="title">{{ auth()->user()->name }}</h5>
-                    </a>
                 </div>
-                <div class="row">
-                    <div class="update ml-auto mr-auto">
-                        <button onclick="edit(' {{ auth()->user()->biodata_id }}')" data-toggle="modal" data-target="#modal-edit" class="btn btn-primary btn-round">Edit Profile</button>
-                        <a href="{{ route('pdf.userdetail',auth()->user()->biodata_id) }}" target="_blank" class="btn btn-success btn-round edit"> <i class="fa fa-print">
-                            </i></a>
-                    </div>
-                </div>
+                <div class="col-auto">
 
-            </div>
-            <div class="card-footer">
-                <hr>
-                <div class="button-container">
-                    {{-- <div class="row">
-                        <div class="col-lg-3 col-md-6 col-6 ml-auto">
-                            <h5>12<br><small>Files</small></h5>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
-                            <h5>2GB<br><small>Used</small></h5>
-                        </div>
-                        <div class="col-lg-3 mr-auto">
-                            <h5>24,6$<br><small>Spent</small></h5>
-                        </div>
-                    </div> --}}
                 </div>
             </div>
         </div>
-
     </div>
-    <div class="col-xl-12 col-md-12 mb-4">
-        <div class="card  shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="h4 text-xl font-weight-bold text-uppercase text-center">
-                            Selamat Datang Di UPPD Samsat Kandangan</div>
+</div>
+</div>
+<div class="row">
+    {{-- <div class="col-md-12 text-center">
+        <h2 class="heading-section mb-5 pb-md-4">Carousel #10</h2>
+    </div> --}}
+    <div class="col-md-12">
+        <div class="slider-hero" >
+            <div class="featured-carousel owl-carousel">
+                <div class="item">
+                    <div class="work">
+                        <div class="img d-flex align-items-center justify-content-center" style="background-image: url(logo/bg.jpg);">
+                            <div class="text text-center">
+                                <div class="row">
 
-                    </div>
-                    <div class="col-auto">
-
+                                    <div class="update ml-auto mr-auto">
+                                        <div class="author">
+                                            <a href="#">
+                                                <img style="width: 200px" class="avatar border-gray"
+                                                    src="{{ asset('')}}paper/assets/img/user.png" alt="...">
+                                                {{-- <h1 style="color: white" class="title">{{ auth()->user()->name }}</h1> --}}
+                                            </a>
+                                        </div>
+                                        <button onclick="edit(' {{ auth()->user()->biodata_id }}')" data-toggle="modal"
+                                            data-target="#modal-edit" class="btn btn-primary btn-round">Edit Profile</button>
+                                        <a href="{{ route('pdf.userdetail',auth()->user()->biodata_id) }}" target="_blank"
+                                            class="btn btn-success btn-round edit"> <i class="fa fa-print">
+                                            </i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <div class="item">
+                    <div class="work">
+                        <div class="img d-flex align-items-center justify-content-center"
+                            style="background-image: url(logo/bg2.jpg);">
+                            <div class="text" style="color: white">
+                                <h2 style="text-align: center;font-weight: bold;">Visi :</h2>
+                                <p style="font-weight: bold;">" Terwujudnya Pelayanan Prima Demi Kepuasan Masyarakat"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="work">
+                        <div class="img d-flex align-items-center justify-content-center" style="background-image: url(logo/bg3.jpg);">
+                            <div class="text" style="color: white">
+                                <h2 style="text-align: center;font-weight: bold;">Misi :</h2>
+                                <p style="font-weight: bold;">1. Menyediakan pelayanan kepada masyarakat pemilik kendaraan bermotor dalam pengurusan STNK, <br>
+                                     pembayaran PKB/BBNKB dan
+                                SWDKLLJ secara cepat, tepat dan benar serta berpedoman pada ketentuan yang berlaku.</p>
+                                <p style="font-weight: bold;">
+                                    2. Menyajikan data sebagai bahan infomasi tentang identitas kepemilikan kendaraan bermotor, <br> nilai PKB/BBNKB dan SWDKLLJ
+                                    kendaraan bermotor yang diperlukan untuk pengambilan keputusan.
+                                </p>
+                                <p style="font-weight: bold;">3. Menyelenggarakan tertib administrasi dokumen secara baik, <br> benar dan akurat dalam rangka menjamin kepastian hukum
+                                kepemilikan dan identitas data kendaraan bermotor</p>
+                                <p style="font-weight: bold;">
+                                   4. Melakukan upaya peningkatan untuk layanan melalui perbaikan sarana dan prasarana, <br> sistem komputerisasi serta
+                                pengembangan SDM.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="my-5 text-center">
+                <ul class="thumbnail">
+                    <li class="active img"><a href="#"><img src="{{ asset('/logo/bg.jpg')}}" alt="Image" class="img-fluid" style="opacity: 0.6"><p style="z-index: 100;position: absolute;color: white;font-size: 18px;font-weight: bold;left: 440px;top: 20px;">Profile</p></a>
+                    </li>
+                    <li><a href="#"><img src="{{ asset('/logo/bg.jpg')}}" alt="Image" class="img-fluid" style="opacity: 0.6"><p style="z-index: 100;position: absolute;color: white;font-size: 18px;font-weight: bold;left: 545px;top: 20px;">Visi
+                    </p></a></li>
+                    <li><a href="#"><img src="{{ asset('/logo/bg.jpg')}}" alt="Image" class="img-fluid" style="opacity: 0.6"><p style="z-index: 100;position: absolute;color: white;font-size: 18px;font-weight: bold;left: 635px;top: 20px;">Misi
+                    </p></a></li>
+                </ul>
             </div>
         </div>
     </div>
@@ -72,7 +116,8 @@
                 <h5 class="modal-title mb-2">Edit Data</h5>
             </div>
             <div class="modal-body">
-                <form method="post" id="form-edit" action="{{ route('dahsboard.update') }}" enctype="multipart/form-data">
+                <form method="post" id="form-edit" action="{{ route('dahsboard.update') }}"
+                    enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="id" id="idEdit">
                     <div class="row">
@@ -124,6 +169,12 @@
 @endsection
 
 @section('custom_js')
+
+{{-- <script src="{{ asset('') }}carousel/js/jquery.min.js"></script> --}}
+<script src="{{ asset('') }}carousel/js/popper.js"></script>
+<script src="{{ asset('') }}carousel/js/bootstrap.min.js"></script>
+<script src="{{ asset('') }}carousel/js/owl.carousel.min.js"></script>
+<script src="{{ asset('') }}carousel/js/main.js"></script>
 <script>
     $(document).ready(function() {
         $('#table').DataTable({

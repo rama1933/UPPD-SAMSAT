@@ -69,6 +69,7 @@ Route::middleware('role:admin')->group(function () {
         Route::post('/filter', [App\Http\Controllers\UserController::class, 'filterdata'])->name('user.filter');
     });
     Route::prefix('/admin')->group(function () {
+        Route::get('laporan', [App\Http\Controllers\PdfController::class, 'indexlaporanadmin'])->name('laporan.admin');
         Route::prefix('/pendaftaran')->group(function () {
             Route::get('/', [App\Http\Controllers\TrxPendaftaranController::class, 'indexpendaftaranadmin'])->name('pendaftaranadmin.index');
             Route::get('/data', [App\Http\Controllers\TrxPendaftaranController::class, 'data'])->name('pendaftaranadmin.data');
@@ -117,6 +118,7 @@ Route::middleware('role:user')->group(function () {
     Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'indexuser'])->name('home.user');
     Route::get('/show', [App\Http\Controllers\MasterController::class, 'showdata'])->name('dashboard.show');
     Route::post('/update', [App\Http\Controllers\MasterController::class, 'updatebiodata'])->name('dahsboard.update');
+    Route::get('laporan', [App\Http\Controllers\PdfController::class, 'indexlaporanuser'])->name('laporan.user');
 
     Route::prefix('/pendaftaran')->group(function () {
         Route::get('/', [App\Http\Controllers\PendaftaranController::class, 'indexpendaftaran'])->name('pendaftaran.index');

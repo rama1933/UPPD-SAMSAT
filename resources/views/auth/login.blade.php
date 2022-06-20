@@ -105,10 +105,17 @@
 
                     <!-- Signup Form -->
                     <div class="signup form-peice">
-
                         <form class="login-form" method="POST" action="{{ route('login') }}">
-                            <h4 style="text-align: center">LOGIN</h4>
-                            <hr>
+                            <div class="col-md-12" style="text-align: center;margin-top:-100px">
+                                <hr>
+                                <img class="mb-3" style="width: 100px" alt="100x100" src="{{ url('') }}/logo/prov.png"
+                                    data-holder-rendered="true">
+
+                                <h4>SILAHKAN LOGIN</h4>
+                                <hr>
+                            </div>
+
+
                             @csrf
                             <div class="form-group">
                                 <label for="loginemail">Username</label>

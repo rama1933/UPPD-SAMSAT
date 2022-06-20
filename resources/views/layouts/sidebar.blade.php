@@ -79,6 +79,17 @@
                     <p>Pendaftaran Selesai</p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
+                    <p>Cetak Laporan</p>
+                </a>
+            </li>
+            <li class="{{set_active('laporan.admin')}}">
+                <a href="{{ route('laporan.admin') }}">
+                    <i class="nc-icon nc-paper"></i>
+                    <p>Laporan</p>
+                </a>
+            </li>
         </ul>
         @endif
 
@@ -101,6 +112,19 @@
                     <p>Pendaftaran</p>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
+                    <p>Cetak Laporan</p>
+                </a>
+            </li>
+            <li class="{{set_active('laporan.user')}}">
+                <a href="{{ route('laporan.user') }}">
+                    <i class="nc-icon nc-paper"></i>
+                    <p>Laporan</p>
+                </a>
+            </li>
+
 
         </ul>
         @endif
