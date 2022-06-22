@@ -29,7 +29,7 @@
                     <div class="heading">
                         <hr>
                         <p >Selamat Datang di-</p>
-                        <h1>Aplikasi Pendaftaran Kendaraan Bermotor</h1>
+                        <h1>Aplikasi Pendaftaran Kendaraan Bermotor Baru</h1>
                         <p style="margin-top: -20px">UPPD SAMSAT KANDANGAN</p>
                         <hr>
                     </div>

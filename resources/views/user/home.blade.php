@@ -29,9 +29,6 @@
 </div>
 </div>
 <div class="row">
-    {{-- <div class="col-md-12 text-center">
-        <h2 class="heading-section mb-5 pb-md-4">Carousel #10</h2>
-    </div> --}}
     <div class="col-md-12">
         <div class="slider-hero" >
             <div class="featured-carousel owl-carousel">
@@ -108,6 +105,37 @@
         </div>
     </div>
 </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img style="max-height: 600px" class="d-block w-100" src="{{ asset('/logo/slide1.jpg')}}" alt="First slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img style="max-height: 600px" class="d-block w-100" src="{{ asset('/logo/slide2.jpg')}}" alt="Second slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img style="max-height: 600px" class="d-block w-100" src="{{ asset('/logo/slide3.jpg')}}" alt="Third slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img style="max-height: 600px" class="d-block w-100" src="{{ asset('/logo/slide4.jpg')}}" alt="Third slide">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
 
 <div class="modal fade" role="dialog" id="modal-edit">
     <div class="modal-dialog modal-lg" role="document">
