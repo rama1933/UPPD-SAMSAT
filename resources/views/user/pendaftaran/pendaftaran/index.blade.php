@@ -31,10 +31,10 @@
                         No
                     </th>
                     <th>
-                        Jenis
+                        Dealer
                     </th>
                     <th>
-                        Tipe
+                        Tipe/Jenis
                     </th>
                     <th>
                         Merk
@@ -44,6 +44,9 @@
                     </th>
                     <th>
                         Tahun Pembuatan
+                    </th>
+                    <th>
+                        Biaya Pendaftaran
                     </th>
                     <th>
                         Tangal Pendaftaran

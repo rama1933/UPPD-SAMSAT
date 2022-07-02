@@ -37,10 +37,10 @@
                         Nama
                     </th>
                     <th>
-                        Jenis
+                        Dealer
                     </th>
                     <th>
-                        Tipe
+                        Tipe / Jenis
                     </th>
                     <th>
                         Merk

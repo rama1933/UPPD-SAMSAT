@@ -31,8 +31,8 @@ function datatable() {
                 name: 'nama'
             },
             {
-                data: 'jenis',
-                name: 'jenis'
+                data: 'dealer',
+                name: 'dealer'
             },
             {
                 data: 'type',

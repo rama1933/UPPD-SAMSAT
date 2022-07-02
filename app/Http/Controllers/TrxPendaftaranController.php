@@ -25,7 +25,7 @@ class TrxPendaftaranController extends Controller
      */
     public function indexpendaftaranadmin()
     {
-        $data['jenis'] = $this->serviceMaster->getDataJenis();
+        $data['dealer'] = $this->serviceMaster->getDataDealer();
         $data['merk'] = $this->serviceMaster->getDataMerk();
         $data['tipe'] = $this->serviceMaster->getDataType();
 
@@ -34,11 +34,19 @@ class TrxPendaftaranController extends Controller
 
     public function indexpendaftaranadminselesai()
     {
-        $data['jenis'] = $this->serviceMaster->getDataJenis();
+        $data['dealer'] = $this->serviceMaster->getDataDealer();
         $data['merk'] = $this->serviceMaster->getDataMerk();
         $data['tipe'] = $this->serviceMaster->getDataType();
 
         return view('admin.pendaftaran.selesai.index', $data);
+    }
+
+    public function indexadminkwitansi()
+    {
+        $data['dealer'] = $this->serviceMaster->getDataDealer();
+        $data['merk'] = $this->serviceMaster->getDataMerk();
+        $data['tipe'] = $this->serviceMaster->getDataType();
+        return view('admin.pendaftaran.kwitansi.index', $data);
     }
 
     public function data(Request $request)
@@ -58,14 +66,18 @@ class TrxPendaftaranController extends Controller
             ->addColumn('nama', function ($data) use ($request) {
                 return $data->biodata->nama;
             })
-            ->addColumn('jenis', function ($data) use ($request) {
-                return $data->jenis->nama;
+            ->addColumn('dealer', function ($data) use ($request) {
+                return $data->dealer->nama;
             })
             ->addColumn('merk', function ($data) use ($request) {
                 return $data->merk->nama;
             })
             ->addColumn('type', function ($data) use ($request) {
-                return $data->type->nama;
+                $type = $data->type->type . '/' . $data->type->jenis;
+                return $type;
+            })
+            ->addColumn('harga', function ($data) use ($request) {
+                return $data->type->harga;
             })
             ->addColumn('warna', function ($data) use ($request) {
                 return $data->warna;
@@ -125,7 +137,7 @@ class TrxPendaftaranController extends Controller
                 if ($request->type == 'selesai') {
                     return '
                  <a href="/admin/pdf/trxpendaftaran/detail/' . $data->id . '"  class="btn btn-sm btn-flat btn-warning" target="_blank" title="Unduh Dokumen (PDF)"><i class="fa fa-print"></i></a>
-                 <button onclick="edit(' . $data->pendaftarans->id . ')" data-toggle="modal" data-target="#modal-edit" class="btn btn-sm btn-flat btn-primary my-1"><i class="fa fa-print"></i></button>
+
                                    ';
                 } else {
                     return '
@@ -134,7 +146,21 @@ class TrxPendaftaranController extends Controller
                                    ';
                 }
             })
-            ->rawColumns(['button', 'jenis', 'type', 'merk', 'nik', 'warna', 'tahun', 'tanggal'])
+            ->addColumn('kwitansi', function ($data) use ($request) {
+                if ($request->type == 'selesai') {
+                    $cek = $data->pendaftarans->nopol;
+                    if (is_null($cek)) {
+                        return 'belum diverifikasi';
+                    } elseif ($cek == '') {
+                        return 'belum diverifikasi';
+                    } else {
+                        return '
+                 <a href="/admin/pdf/trxpendaftaran/kwitansi/' . $data->id . '"  class="btn btn-sm btn-flat btn-success" target="_blank" title="Unduh Dokumen (PDF)"><i class="fa fa-print"> </i> Cetak</a>
+                                   ';
+                    }
+                }
+            })
+            ->rawColumns(['button', 'jenis', 'type', 'merk', 'nik', 'warna', 'tahun', 'harga', 'tanggal', 'kwitansi'])
             ->make(true);
     }
 

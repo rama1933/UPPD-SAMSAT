@@ -60,12 +60,16 @@
         </div>
         <div class="column right">
             <h2 style="margin-top: 10px">
-                UPPD SAMSAT KANDANGAN
+                PEMERINTAH PROVINSI KALIMANTAN SELATAN
+                BADAN KEUANGAN DAERAH
+                UNIT PELAYANAN PENDAPATAN DAERAH (UPPD)
+                KANDANGAN
             </h2>
-            {{-- <h3 style="margin-top: -15px">
-                DINAS KOMUNIKASI DAN INFORMATIKA
-            </h3>
             <h6 style="margin-top: -15px">
+                Jl. Jend. Sudirman Km. 3,5 RT.2 RW.1 Desa Karasikan Kec. Sungai Raya Kandangan 71271
+                Telp./Fax (0517) 21237 Email : uppdkandangan.dispenda@gmail.com
+            </h6>
+            {{-- <h6 style="margin-top: -15px">
                 Jalan Aluh Idut No. 66 A Kandangan Kab. Hulu Sungai Selatan
                 KANDANGAN 71211
             </h6> --}}
@@ -88,10 +92,10 @@
             </tr>
 
             <tr>
-                <th style="text-align: left">Jenis</th>
+                <th style="text-align: left">Dealer</th>
                 <td style="text-align: center">:</td>
                 <td style="padding-left: 10px">
-                    {{ $data->jenis->nama }}
+                    {{ $data->dealer->nama }}
                 </td>
             </tr>
             <tr>
@@ -102,10 +106,10 @@
                 </td>
             </tr>
             <tr>
-                <th style="text-align: left">Tipe</th>
+                <th style="text-align: left">Tipe / Jenis</th>
                 <td style="text-align: center">:</td>
                 <td style="padding-left: 10px">
-                    {{ $data->type->nama }}
+                    {{ $data->type->type }} / {{ $data->type->jenis }}
                 </td>
             </tr>
             <tr>
@@ -116,7 +120,12 @@
             <tr>
                 <th style="text-align: left">Tahun</th>
                 <td style="text-align: center">:</td>
-                <td style="padding-left: 10px">{{ $data->warna }}</td>
+                <td style="padding-left: 10px">{{ $data->tahun }}</td>
+            </tr>
+            <tr>
+                <th style="text-align: left">Biaya Pendaftaran</th>
+                <td style="text-align: center">:</td>
+                <td style="padding-left: 10px">{{ $data->type->harga }}</td>
             </tr>
             <tr>
                 <th style="text-align: left">Tgl Pendaftaran</th>
@@ -159,6 +168,34 @@
             @endforeach
         </tbody>
     </table>
+    <div class="row" style="text-align: center;float:right;width: 30%;">
+        <div>
+            <table style="margin-top: 10px;width: 100%;border: none">
+                <tr style="border: none">
+                    <td style="border: none">Dikeluarkan</td>
+                    <td style="border: none">:</td>
+                    <td style="border: none">Dikandangan</td>
+                </tr>
+                <tr>
+                    <td style="border: none">Pada Tanggal</td>
+                    <td style="border: none">:</td>
+                    <td style="border: none">{{ date('d-m-Y') }}</td>
+                </tr>
+            </table>
+            <hr>
+            <h4 style="margin-bottom: 90px;margin-top: -5px">
+                mengetahui <br>
+            </h4>
+            <h4 style="margin-bottom: -6px">
+                Gusti roby azwar, s.ap
+            </h4>
+            <hr>
+            <h6 style="margin-top: -6px">
+                Kepala UPPD Kandangan
+                kasi pelayanan PKB BBNKB
+            </h6>
+        </div>
+    </div>
 </body>
 
 </html>

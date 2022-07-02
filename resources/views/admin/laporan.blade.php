@@ -19,10 +19,10 @@
                     <tbody>
                         <tr>
                             <td>
-                                <h5>Cetak Laporan Jenis</h5>
+                                <h5>Cetak Laporan Dealer</h5>
                             </td>
                             <td>
-                                <a href="{{route('pdf.jenis')}}" target="_blank" class="btn btn-success"><i class="fa fa-print"></i></a>
+                                <a href="{{route('pdf.dealer')}}" target="_blank" class="btn btn-success"><i class="fa fa-print"></i></a>
                             </td>
                         </tr>
                         <tr>
@@ -35,10 +35,18 @@
                         </tr>
                         <tr>
                             <td>
-                                <h5>Cetak Laporan Tipe</h5>
+                                <h5>Cetak Laporan Tipe/Jenis</h5>
                             </td>
                             <td>
                                 <a href="{{route('pdf.type')}}" target="_blank" class="btn btn-success"><i class="fa fa-print"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h5>Cetak Laporan Biaya Pendaftaran</h5>
+                            </td>
+                            <td>
+                                <a href="{{route('pdf.harga')}}" target="_blank" class="btn btn-success"><i class="fa fa-print"></i></a>
                             </td>
                         </tr>
                         <tr>
@@ -47,6 +55,14 @@
                                 </td>
                                 <td>
                                     <a href="{{route('pdf.biodata')}}" target="_blank" class="btn btn-success"><i class="fa fa-print"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>Cetak Laporan Pegawai</h5>
+                                </td>
+                                <td>
+                                    <a href="{{route('pdf.pegawai')}}" target="_blank" class="btn btn-success"><i class="fa fa-print"></i></a>
                                 </td>
                             </tr>
                         <tr>

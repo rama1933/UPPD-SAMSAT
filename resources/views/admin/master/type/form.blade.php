@@ -7,12 +7,20 @@
             <div class="modal-body">
                 <form method="post" id="form-create" action="{{ route('tipe.store') }}" enctype="multipart/form-data">
                     @csrf
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label for="nama">Nama <small class="text-danger">*</small></label>
-                            <input type="text" name="nama" class="form-control" required>
-                        </div>
+                   <div class="row">
+                    <div class="col-md-12">
+                        <label for="type">Tipe <small class="text-danger">*</small></label>
+                        <input type="text" name="type" class="form-control" required>
                     </div>
+                    <div class="col-md-12">
+                        <label for="jenis">Jenis <small class="text-danger">*</small></label>
+                        <input type="text" name="jenis" class="form-control" required>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="harga">Biaya Pembuatan <small class="text-danger">*</small></label>
+                        <input type="text" name="harga" id="rupiah" class="form-control" required>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer bg-whitesmoke br">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">TUTUP</button>
@@ -37,8 +45,16 @@
                     <input type="hidden" name="id" id="idEdit">
                     <div class="row">
                         <div class="col-md-12">
-                            <label for="nama">Nama <small class="text-danger">*</small></label>
-                            <input type="text" id="namaEdit" name="nama" class="form-control" required>
+                            <label for="type">Tipe <small class="text-danger">*</small></label>
+                            <input type="text" id="typeEdit" name="type" class="form-control" required>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="jenis">Jenis <small class="text-danger">*</small></label>
+                            <input type="text" id="jenisEdit" name="jenis" class="form-control" required>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="harga">Biaya Pembuatan <small class="text-danger">*</small></label>
+                            <input type="text" id="hargaEdit" name="harga" class="form-control" required>
                         </div>
                     </div>
             </div>

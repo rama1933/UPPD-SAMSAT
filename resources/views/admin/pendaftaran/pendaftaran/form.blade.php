@@ -1,4 +1,4 @@
-<div class="modal fade" role="dialog" id="modal-create">
+{{-- <div class="modal fade" role="dialog" id="modal-create">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header alert alert-primary">
@@ -57,7 +57,7 @@
             </form>
         </div>
     </div>
-</div>
+</div> --}}
 
 <div class="modal fade" role="dialog" id="modal-edit">
     <div class="modal-dialog modal-lg" role="document">

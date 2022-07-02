@@ -28,10 +28,18 @@ class PendaftaranController extends Controller
      */
     public function indexpendaftaran()
     {
-        $data['jenis'] = $this->serviceMaster->getDataJenis();
+        $data['dealer'] = $this->serviceMaster->getDataDealer();
         $data['merk'] = $this->serviceMaster->getDataMerk();
         $data['tipe'] = $this->serviceMaster->getDataType();
         return view('user.pendaftaran.pendaftaran.index', $data);
+    }
+
+    public function indexkwitansi()
+    {
+        $data['dealer'] = $this->serviceMaster->getDataDealer();
+        $data['merk'] = $this->serviceMaster->getDataMerk();
+        $data['tipe'] = $this->serviceMaster->getDataType();
+        return view('user.pendaftaran.kwitansi.index', $data);
     }
 
     public function data(Request $request)
@@ -47,14 +55,18 @@ class PendaftaranController extends Controller
 
         return DataTables::of($data)
             ->addIndexColumn()
-            ->addColumn('jenis', function ($data) use ($request) {
-                return $data->jenis->nama;
+            ->addColumn('dealer', function ($data) use ($request) {
+                return $data->dealer->nama;
             })
             ->addColumn('merk', function ($data) use ($request) {
                 return $data->merk->nama;
             })
             ->addColumn('type', function ($data) use ($request) {
-                return $data->type->nama;
+                $type = $data->type->type . '/' . $data->type->jenis;
+                return $type;
+            })
+            ->addColumn('harga', function ($data) use ($request) {
+                return $data->type->harga;
             })
             ->addColumn('button', function ($data) use ($request) {
                 return '
@@ -63,7 +75,12 @@ class PendaftaranController extends Controller
                 <button onclick="deletebtn(' . $data->id . ',' . $data->biodata_id . ')" class="btn btn-sm btn-flat btn-danger my-1"><i class="fa fa-trash"></i></button>
                                    ';
             })
-            ->rawColumns(['button', 'jenis', 'type', 'merk'])
+            ->addColumn('kwitansi', function ($data) use ($request) {
+                return '
+                 <a href="/pdf/pendaftaran/kwitansi/' . $data->id . '"  class="btn btn-sm btn-flat btn-success" target="_blank" title="Unduh Dokumen (PDF)"><i class="fa fa-print"> </i> Cetak</a>
+                                   ';
+            })
+            ->rawColumns(['button', 'jenis', 'type', 'merk', 'harga', 'kwitansi'])
             ->make(true);
     }
 
@@ -76,7 +93,7 @@ class PendaftaranController extends Controller
     public function storependaftaran(Request $request)
     {
         $validator = Validator::make(request()->all(), [
-            'jenis_id' => 'required',
+            'dealer_id' => 'required',
             'type_id' => 'required',
             'merk_id' => 'required',
             'warna' => 'required',
@@ -114,10 +131,10 @@ class PendaftaranController extends Controller
     {
         $id = $request->id;
         $data = $this->service->getDataPendaftaran($id);
-        $dataJenis = $this->serviceMaster->getDataJenis($data->jenis_id);
+        $datadealer = $this->serviceMaster->getDatadealer($data->dealer_id);
         $dataMerk = $this->serviceMaster->getDataMerk($data->merk_id);
         $dataType = $this->serviceMaster->getDataType($data->type_id);
-        $dataJenisAll = $this->serviceMaster->getDataJenis();
+        $datadealerAll = $this->serviceMaster->getDatadealer();
         $dataMerkAll = $this->serviceMaster->getDataMerk();
         $dataTypeAll = $this->serviceMaster->getDataType();
         return response()->json(
@@ -125,10 +142,10 @@ class PendaftaranController extends Controller
                 'id' => $data->id,
                 'warna' => $data->warna,
                 'tahun' => $data->tahun,
-                'jenis' => $dataJenis,
+                'dealer' => $datadealer,
                 'merk' => $dataMerk,
                 'type' => $dataType,
-                'jenisall' => $dataJenisAll,
+                'dealerall' => $datadealerAll,
                 'merkall' => $dataMerkAll,
                 'typeall' => $dataTypeAll,
             ]
@@ -200,6 +217,26 @@ class PendaftaranController extends Controller
                 "status" => "failed",
                 "messages" => "Gagal Menghapus Data",
             ]);
+        }
+    }
+
+    public function hargapendaftaran(Request $request)
+    {
+        $id = $request->id;
+        $data = $this->serviceMaster->getDataType($id);
+        if (is_null($data)) {
+            return response()->json(
+                [
+                    "status" => "empty",
+                    "messages" => "Data Tidak Ditemukan",
+                ]
+            );
+        } else {
+            return response()->json(
+                [
+                    'harga' => $data->harga,
+                ]
+            );
         }
     }
 }

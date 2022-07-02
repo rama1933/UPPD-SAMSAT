@@ -27,10 +27,10 @@
                     <p>Master</p>
                 </a>
             </li>
-            <li class="{{set_active('jenis.index')}}">
-                <a href="{{ route('jenis.index') }}">
+            <li class="{{set_active('dealer.index')}}">
+                <a href="{{ route('dealer.index') }}">
                     <i class="nc-icon nc-app"></i>
-                    <p>Jenis</p>
+                    <p>Dealer</p>
                 </a>
             </li>
             <li class="{{set_active('merk.index')}}">
@@ -42,13 +42,19 @@
             <li class="{{set_active('tipe.index')}}">
                 <a href="{{ route('tipe.index') }}">
                     <i class="nc-icon nc-app"></i>
-                    <p>Tipe</p>
+                    <p>Tipe/Jenis/Biaya</p>
                 </a>
             </li>
             <li class="{{set_active('biodata.index')}}">
                 <a href="{{ route('biodata.index') }}">
                     <i class="nc-icon nc-badge"></i>
                     <p>Biodata</p>
+                </a>
+            </li>
+            <li class="{{set_active('pegawai.index')}}">
+                <a href="{{ route('pegawai.index') }}">
+                    <i class="nc-icon nc-badge"></i>
+                    <p>Pegawai</p>
                 </a>
             </li>
             <li class="nav-item">
@@ -90,6 +96,12 @@
                     <p>Laporan</p>
                 </a>
             </li>
+            <li class="{{set_active('kwitansiadmin.index')}}">
+                <a href="{{ route('kwitansiadmin.index') }}">
+                    <i class="nc-icon nc-paper"></i>
+                    <p>Kwitansi Pembayaran</p>
+                </a>
+            </li>
         </ul>
         @endif
 
@@ -122,6 +134,13 @@
                 <a href="{{ route('laporan.user') }}">
                     <i class="nc-icon nc-paper"></i>
                     <p>Laporan</p>
+                </a>
+            </li>
+
+            <li class="{{set_active('kwitansi.index')}}">
+                <a href="{{ route('kwitansi.index') }}">
+                    <i class="nc-icon nc-paper"></i>
+                    <p>Tagihan Pembayaran</p>
                 </a>
             </li>
 

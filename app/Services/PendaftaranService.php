@@ -16,9 +16,9 @@ class PendaftaranService
     function getDataPendaftaran($id = null, $user_id = null)
     {
         if ($id === null && $user_id == null) {
-            $data = Pendaftaran::with('jenis')->with('merk')->with('type')->get();
+            $data = Pendaftaran::with('dealer')->with('merk')->with('type')->get();
         } elseif ($id === null && $user_id != null) {
-            $data = Pendaftaran::with('jenis')->with('merk')->with('type')->where('user_id', $user_id)->get();
+            $data = Pendaftaran::with('dealer')->with('merk')->with('type')->where('user_id', $user_id)->get();
         } else {
             $data =  Pendaftaran::where('id', $id)->first();
         }
@@ -32,7 +32,7 @@ class PendaftaranService
         $pendaftaran = DB::table('tbl_pendaftaran')->insertGetId([
             "user_id" => $data['user_id'],
             "biodata_id" => $data['biodata_id'],
-            "jenis_id" => $data['jenis_id'],
+            "dealer_id" => $data['dealer_id'],
             "type_id" => $data['type_id'],
             "merk_id" => $data['merk_id'],
             "warna" => $data['warna'],
@@ -55,7 +55,7 @@ class PendaftaranService
         $find = Pendaftaran::find($id);
         $toward =
             [
-                "jenis_id" => $data['jenis_id'],
+                "dealer_id" => $data['dealer_id'],
                 "type_id" => $data['type_id'],
                 "merk_id" => $data['merk_id'],
                 "warna" => $data['warna'],

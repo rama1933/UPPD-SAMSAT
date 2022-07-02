@@ -2,11 +2,13 @@
 
 namespace App\Services;
 
-use App\Models\Biodata;
 use App\Models\Merk;
 use App\Models\Type;
-use App\Models\Jenis;
 use App\Models\User;
+use App\Models\Jenis;
+use App\Models\Dealer;
+use App\Models\Biodata;
+use App\Models\Pegawai;
 
 class MasterService
 {
@@ -21,6 +23,16 @@ class MasterService
             $data = Jenis::all();
         } else {
             $data =  Jenis::where('id', $id)->first();
+        }
+        return $data;
+    }
+
+    function getDataDealer($id = null)
+    {
+        if ($id === null) {
+            $data = Dealer::all();
+        } else {
+            $data =  Dealer::where('id', $id)->first();
         }
         return $data;
     }
@@ -55,11 +67,34 @@ class MasterService
         return $data;
     }
 
+    function getDataPegawai($id = null)
+    {
+        if ($id === null) {
+            $data = Pegawai::all();
+        } else {
+            $data =  Pegawai::where('id', $id)->first();
+        }
+        return $data;
+    }
+
     public static function storeJenis(array $data)
     {
         $store = Jenis::create(
             [
                 "nama" => $data['nama'],
+                "created_at" => now(),
+                "updated_at" => now(),
+            ]
+        );
+        return true;
+    }
+
+    public static function storeDealer(array $data)
+    {
+        $store = Dealer::create(
+            [
+                "nama" => $data['nama'],
+                "alamat" => $data['alamat'],
                 "created_at" => now(),
                 "updated_at" => now(),
             ]
@@ -83,7 +118,9 @@ class MasterService
     {
         $store =
             Type::create([
-                "nama" => $data['nama'],
+                "jenis" => $data['jenis'],
+                "type" => $data['type'],
+                "harga" => $data['harga'],
                 "created_at" => now(),
                 "updated_at" => now()
             ]);
@@ -106,12 +143,42 @@ class MasterService
         return true;
     }
 
+    public static function storePegawai(array $data)
+    {
+        $store =
+            Pegawai::create([
+                "nip" => $data['nip'],
+                "nama" => $data['nama'],
+                "jk" => $data['jk'],
+                "jabatan" => $data['jabatan'],
+                "no_hp" => $data['no_hp'],
+                "created_at" => now(),
+                "updated_at" => now()
+            ]);
+        return true;
+    }
+
     public static function updateJenis($id, array $data)
     {
         $find = Jenis::find($id);
         $toward =
             [
                 "nama" => $data['nama'],
+                "created_at" => now(),
+                "updated_at" => now()
+            ];
+
+        $find->update($toward);
+        return true;
+    }
+
+    public static function updateDealer($id, array $data)
+    {
+        $find = Dealer::find($id);
+        $toward =
+            [
+                "nama" => $data['nama'],
+                "alamat" => $data['alamat'],
                 "created_at" => now(),
                 "updated_at" => now()
             ];
@@ -138,7 +205,9 @@ class MasterService
         $find = Type::find($id);
         $toward =
             [
-                "nama" => $data['nama'],
+                "jenis" => $data['jenis'],
+                "type" => $data['type'],
+                "harga" => $data['harga'],
                 "created_at" => now(),
                 "updated_at" => now()
             ];
@@ -164,10 +233,37 @@ class MasterService
         return true;
     }
 
+    public static function updatePegawai($id, array $data)
+    {
+        $find = Pegawai::find($id);
+        $toward =
+            [
+                "nip" => $data['nip'],
+                "nama" => $data['nama'],
+                "jk" => $data['jk'],
+                "jabatan" => $data['jabatan'],
+                "no_hp" => $data['no_hp'],
+                "created_at" => now(),
+                "updated_at" => now()
+            ];
+        $find->update($toward);
+        return true;
+    }
+
     public static function deleteDataJenis($id)
     {
         try {
             Jenis::find($id)->delete();
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
+
+    public static function deleteDataDealer($id)
+    {
+        try {
+            Dealer::find($id)->delete();
             return true;
         } catch (\Throwable $th) {
             return false;
@@ -199,6 +295,17 @@ class MasterService
         try {
             Biodata::find($id)->delete();
             User::where('biodata_id', $id)->delete();
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
+
+
+    public static function deleteDataPegawai($id)
+    {
+        try {
+            Pegawai::find($id)->delete();
             return true;
         } catch (\Throwable $th) {
             return false;

@@ -35,6 +35,16 @@ class MasterController extends Controller
         return view('admin.master.biodata.index');
     }
 
+    public function indexdealer()
+    {
+        return view('admin.master.dealer.index');
+    }
+
+    public function indexpegawai()
+    {
+        return view('admin.master.pegawai.index');
+    }
+
     public function data(Request $request)
     {
         switch ($request->type) {
@@ -49,6 +59,12 @@ class MasterController extends Controller
                 break;
             case 'biodata':
                 $data = $this->service->getDataBiodata();
+                break;
+            case 'dealer':
+                $data = $this->service->getDataDealer();
+                break;
+            case 'pegawai':
+                $data = $this->service->getDataPegawai();
                 break;
             default:
                 $data = collect();
@@ -66,6 +82,13 @@ class MasterController extends Controller
                 if ($request->type == 'biodata') {
                     return '
                                         <a href="/admin/pdf/master/biodata/detail/' . $data->id . '"  class="btn btn-sm btn-flat btn-warning" target="_blank" title="Unduh Dokumen (PDF)"><i class="fa fa-print"></i></a>
+                                        <button onclick="edit(' . $data->id . ')" data-toggle="modal" data-target="#modal-edit" class="btn btn-sm btn-flat btn-primary my-2"><i class="fa fa-pencil"></i></button>
+                                        <button onclick="show(' . $data->id . ')" data-toggle="modal" data-target="#modal-show" class="btn btn-sm btn-flat btn-success my-2"><i class="fa fa-eye"></i></button>
+                                        <button onclick="deletebtn(' . $data->id . ')" class="btn btn-sm btn-flat btn-danger my-2"><i class="fa fa-trash"></i></button>
+                                    ';
+                } elseif ($request->type == 'pegawai') {
+                    return '
+                                        <a href="/admin/pdf/master/pegawai/detail/' . $data->id . '"  class="btn btn-sm btn-flat btn-warning" target="_blank" title="Unduh Dokumen (PDF)"><i class="fa fa-print"></i></a>
                                         <button onclick="edit(' . $data->id . ')" data-toggle="modal" data-target="#modal-edit" class="btn btn-sm btn-flat btn-primary my-2"><i class="fa fa-pencil"></i></button>
                                         <button onclick="show(' . $data->id . ')" data-toggle="modal" data-target="#modal-show" class="btn btn-sm btn-flat btn-success my-2"><i class="fa fa-eye"></i></button>
                                         <button onclick="deletebtn(' . $data->id . ')" class="btn btn-sm btn-flat btn-danger my-2"><i class="fa fa-trash"></i></button>
@@ -88,6 +111,9 @@ class MasterController extends Controller
             case 'jenis':
                 $data = $this->service->getDataJenis($id);
                 break;
+            case 'dealer':
+                $data = $this->service->getDataDealer($id);
+                break;
             case 'merk':
                 $data = $this->service->getDataMerk($id);
                 break;
@@ -96,6 +122,9 @@ class MasterController extends Controller
                 break;
             case 'biodata':
                 $data = $this->service->getDataBiodata($id);
+                break;
+            case 'pegawai':
+                $data = $this->service->getDataPegawai($id);
                 break;
             default:
                 $data = collect();
@@ -112,6 +141,34 @@ class MasterController extends Controller
                     'ttl' => $data->tempat_lahir . ', ' . $data->tanggal_lahir,
                     'tempat_lahir' => $data->tempat_lahir,
                     'tanggal_lahir' => $data->tanggal_lahir,
+                ]
+            );
+        } elseif ($request->type == 'pegawai') {
+            return response()->json(
+                [
+                    'id' => $data->id,
+                    'nama' => $data->nama,
+                    'nip' => $data->nip,
+                    'jabatan' => $data->jabatan,
+                    'jk' => $data->jk,
+                    'no_hp' => $data->no_hp,
+                ]
+            );
+        } elseif ($request->type == 'tipe') {
+            return response()->json(
+                [
+                    'id' => $data->id,
+                    'type' => $data->type,
+                    'jenis' => $data->jenis,
+                    'harga' => $data->harga,
+                ]
+            );
+        } elseif ($request->type == 'dealer') {
+            return response()->json(
+                [
+                    'id' => $data->id,
+                    'nama' => $data->nama,
+                    'alamat' => $data->alamat,
                 ]
             );
         } else {
@@ -139,6 +196,12 @@ class MasterController extends Controller
                 break;
             case 'biodata':
                 $data = $this->service->deleteDataBiodata($id);
+                break;
+            case 'dealer':
+                $data = $this->service->deleteDataDealer($id);
+                break;
+            case 'pegawai':
+                $data = $this->service->deleteDataPegawai($id);
                 break;
             default:
                 $data = collect();
@@ -184,6 +247,33 @@ class MasterController extends Controller
         }
     }
 
+    public function storedealer(Request $request)
+    {
+        $validator = Validator::make(request()->all(), [
+            'nama' => 'required|unique:tbl_master_dealer,nama',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                "status" => "failed",
+                "message" => $validator->errors()->first(),
+            ]);
+        } else {
+            $store = $this->service->storeDealer($request->all());
+            if ($store == true) {
+                return response()->json([
+                    "status" => "success",
+                    "messages" => "Berhasil Menambahkan Data",
+                ]);
+            } else {
+                return response()->json([
+                    "status" => "failed",
+                    "messages" => "Gagal Menambahkan Data",
+                ]);
+            }
+        }
+    }
+
     public function storemerk(Request $request)
     {
         $validator = Validator::make(request()->all(), [
@@ -214,7 +304,8 @@ class MasterController extends Controller
     public function storetype(Request $request)
     {
         $validator = Validator::make(request()->all(), [
-            'nama' => 'required|unique:tbl_master_type,nama',
+            // 'type' => 'required|unique:tbl_master_type,type',
+            // 'jenis' => 'required|unique:tbl_master_type,jenis',
         ]);
 
         if ($validator->fails()) {
@@ -270,6 +361,37 @@ class MasterController extends Controller
         }
     }
 
+    public function storepegawai(Request $request)
+    {
+        $validator = Validator::make(request()->all(), [
+            'nip' => 'required|unique:tbl_master_pegawai,nip',
+            'nama' => 'required',
+            'no_hp' => 'required',
+            'jabatan' => 'required',
+            'jk' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                "status" => "failed",
+                "message" => $validator->errors()->first(),
+            ]);
+        } else {
+            $store = $this->service->storePegawai($request->all());
+            if ($store == true) {
+                return response()->json([
+                    "status" => "success",
+                    "messages" => "Berhasil Menambahkan Data",
+                ]);
+            } else {
+                return response()->json([
+                    "status" => "failed",
+                    "messages" => "Gagal Menambahkan Data",
+                ]);
+            }
+        }
+    }
+
     public function updatejenis(Request $request)
     {
         $id = $request->id;
@@ -297,6 +419,35 @@ class MasterController extends Controller
             }
         }
     }
+
+    public function updatedealer(Request $request)
+    {
+        $id = $request->id;
+        $validator = Validator::make(request()->all(), [
+            'nama' => 'required|unique:tbl_master_dealer,nama,' . $id,
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                "status" => "failed",
+                "message" => $validator->errors()->first(),
+            ]);
+        } else {
+            $store = $this->service->updateDealer($id, $request->all());
+            if ($store == true) {
+                return response()->json([
+                    "status" => "success",
+                    "messages" => "Berhasil memperbaharui Data",
+                ]);
+            } else {
+                return response()->json([
+                    "status" => "failed",
+                    "messages" => "Gagal memperbaharui Data",
+                ]);
+            }
+        }
+    }
+
 
     public function updatemerk(Request $request)
     {
@@ -330,7 +481,7 @@ class MasterController extends Controller
     {
         $id = $request->id;
         $validator = Validator::make(request()->all(), [
-            'nama' => 'required|unique:tbl_master_type,nama,' . $id,
+            // 'nama' => 'required|unique:tbl_master_type,nama,' . $id,
         ]);
 
         if ($validator->fails()) {
@@ -373,6 +524,38 @@ class MasterController extends Controller
             ]);
         } else {
             $store = $this->service->updateBiodata($id, $request->all());
+            if ($store == true) {
+                return response()->json([
+                    "status" => "success",
+                    "messages" => "Berhasil memperbaharui Data",
+                ]);
+            } else {
+                return response()->json([
+                    "status" => "failed",
+                    "messages" => "Gagal memperbaharui Data",
+                ]);
+            }
+        }
+    }
+
+    public function updatepegawai(Request $request)
+    {
+        $id = $request->id;
+        $validator = Validator::make(request()->all(), [
+            'nip' => 'required|unique:tbl_master_pegawai,nip,' . $id,
+            'nama' => 'required',
+            'no_hp' => 'required',
+            'jabatan' => 'required',
+            'jk' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                "status" => "failed",
+                "message" => $validator->errors()->first(),
+            ]);
+        } else {
+            $store = $this->service->updatePegawai($id, $request->all());
             if ($store == true) {
                 return response()->json([
                     "status" => "success",

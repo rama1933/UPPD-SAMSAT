@@ -15,7 +15,9 @@ class TblMasterType extends Migration
     {
         Schema::create('tbl_master_type', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
+            $table->string('type');
+            $table->string('jenis');
+            $table->string('harga');
             $table->timestamps();
         });
     }

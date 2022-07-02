@@ -31,7 +31,13 @@
                         No
                     </th>
                     <th>
-                        Nama
+                        Type
+                    </th>
+                    <th>
+                        Jenis
+                    </th>
+                    <th>
+                        Biaya Pendaftaran
                     </th>
                     <th>
                         Aksi

@@ -23,8 +23,8 @@ function datatable() {
                 name: 'DT_RowIndex'
             },
             {
-                data: 'jenis',
-                name: 'jenis'
+                data: 'dealer',
+                name: 'dealer'
             },
             {
                 data: 'type',
@@ -41,6 +41,10 @@ function datatable() {
             {
                 data: 'tahun',
                 name: 'tahun'
+            },
+            {
+                data: 'harga',
+                name: 'harga'
             },
             {
                 data: 'tanggal',
@@ -93,30 +97,32 @@ function edit(id) {
         method: "GET",
         data: { id: id, _token: '{{ csrf_token() }}' },
         success: function(response) {
-            // console.log(response)
+            console.log(response)
             $('#idEdit').empty();
             $('#warnaEdit').empty();
             $('#tahunEdit').empty();
-            $('#jenis_id').removeAttr("required");
-            $('#merk_id').removeAttr("required");
-            $('#type_id').removeAttr("required");
-            $('#jenis_id').empty();
-            $('#merk_id').empty();
-            $('#type_id').empty();
+            $('#dealer_idEdit').removeAttr("required");
+            $('#merk_idEdit').removeAttr("required");
+            $('#type_idEdit').removeAttr("required");
+            $('#dealer_idEdit').empty();
+            $('#hargaEdit').empty();
+            $('#merk_idEdit').empty();
+            $('#type_idEdit').empty();
             $('#idEdit').val(id);
             $('#warnaEdit').val(response['warna']);
             $('#tahunEdit').val(response['tahun']);
-            $('#jenis_id').append('<option value="' + response.jenis.id + '">' + response.jenis.nama + '</option>');
-            $('#merk_id').append('<option value="' + response.merk.id + '">' + response.merk.nama + '</option>');
-            $('#type_id').append('<option value="' + response.type.id + '">' + response.type.nama + '</option>');
-            $.each(response.jenisall, function(key, val) {
-                $('select[id="jenis_id"]').append('<option value="' + val.id + '">' + val.nama + '</option>');
+            $('#hargaEdit').val(response.type.harga);
+            $('#dealer_idEdit').append('<option value="' + response.dealer.id + '">' + response.dealer.nama + '</option>');
+            $('#merk_idEdit').append('<option value="' + response.merk.id + '">' + response.merk.nama + '</option>');
+            $('#type_idEdit').append('<option value="' + response.type.id + '">' + response.type.type + '/' + response.type.jenis + '</option>');
+            $.each(response.dealerall, function(key, val) {
+                $('select[id="dealer_idEdit"]').append('<option value="' + val.id + '">' + val.nama + '</option>');
             })
             $.each(response.merkall, function(key, val) {
-                $('select[id="merk_id"]').append('<option value="' + val.id + '">' + val.nama + '</option>');
+                $('select[id="merk_idEdit"]').append('<option value="' + val.id + '">' + val.nama + '</option>');
             })
             $.each(response.typeall, function(key, val) {
-                $('select[id="type_id"]').append('<option value="' + val.id + '">' + val.nama + '</option>');
+                $('select[id="type_idEdit"]').append('<option value="' + val.id + '">' + val.type + '/' + val.jenis + '</option>');
             })
         }
     })
@@ -177,45 +183,38 @@ function deletebtn(id, biodata_id) {
         });
 }
 
-$('#periksa').on('click', function(e) {
+$('#type_id').on('change', function(e) {
     e.preventDefault()
-    let nik = $("#nik").val()
+    let id = $("#type_id").val()
         //  console.log(nik)
 
     $.ajax({
-        url: window.location.origin + '/user/filter',
+        url: window.location.origin + '/pendaftaran/harga',
         method: "POST",
         headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-        data: { nik: nik },
+        data: { id: id },
         success: function(res) {
-            if (res.status == 'empty') {
-                swal('Data Tidak Ditemukan Silahkan Isi Biodata', '', 'error');
-                $('#nama').prop("readonly", false);
-                $('#no_hp').prop("readonly", false);
-                $('#alamat').prop("readonly", false);
-                $('#no_hp').prop("readonly", false);
-                $('#tempat_lahir').prop("readonly", false);
-                $('#tanggal_lahir').prop("readonly", false);
-            } else {
-                swal('Data Ditemukan', '', 'success');
-                $('#nama').prop("readonly", false);
-                $('#no_hp').prop("readonly", false);
-                $('#alamat').prop("readonly", false);
-                $('#no_hp').prop("readonly", false);
-                $('#tempat_lahir').prop("readonly", false);
-                $('#tanggal_lahir').prop("readonly", false);
-                $('#nama').empty();
-                $('#nohp').empty();
-                $('#alamat').empty();
-                $('#tempat_lahir').empty();
-                $('#tanggal_lahir').empty();
-                $('#no_hp').val(res['no_hp']);
-                $('#alamat').val(res['alamat']);
-                $('#tempat_lahir').val(res['tempat_lahir']);
-                $('#tanggal_lahir').val(res['tanggal_lahir']);
-                $('#nama').val(res['nama']);
-            }
+
+            $('#harga').empty();
+            $('#harga').val(res['harga']);
         }
     });
+})
 
+$('#type_idEdit').on('change', function(e) {
+    e.preventDefault()
+    let id = $("#type_idEdit").val()
+        //  console.log(nik)
+
+    $.ajax({
+        url: window.location.origin + '/pendaftaran/harga',
+        method: "POST",
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        data: { id: id },
+        success: function(res) {
+
+            $('#hargaEdit').empty();
+            $('#hargaEdit').val(res['harga']);
+        }
+    });
 })

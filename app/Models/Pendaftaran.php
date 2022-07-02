@@ -18,9 +18,9 @@ class Pendaftaran extends Model
         return $this->hasOne(Trxpendaftaran::class, 'pendaftaran_id', 'id');
     }
 
-    public function jenis()
+    public function dealer()
     {
-        return $this->hasOne(Jenis::class, 'id', 'jenis_id');
+        return $this->hasOne(Dealer::class, 'id', 'dealer_id');
     }
 
     public function merk()
