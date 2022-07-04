@@ -65,6 +65,14 @@
                                     <a href="{{route('pdf.pegawai')}}" target="_blank" class="btn btn-success"><i class="fa fa-print"></i></a>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>
+                                    <h5>Cetak Laporan Profile Samsat</h5>
+                                </td>
+                                <td>
+                                    <a href="{{route('pdf.profile')}}" target="_blank" class="btn btn-success"><i class="fa fa-print"></i></a>
+                                </td>
+                            </tr>
                         <tr>
                             <td>
                                 <h5>Cetak Laporan User</h5>
@@ -91,6 +99,7 @@
                                             class="fa fa-print"></i></a>
                                 </td>
                             </tr>
+
 
                     </tbody>
                 </table>

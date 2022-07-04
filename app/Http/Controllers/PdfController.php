@@ -6,6 +6,7 @@ use PDF;
 use App\Models\Biodata;
 use App\Models\Pegawai;
 use App\Models\Pendaftaran;
+use App\Models\Profile;
 use App\Models\TrxPendaftaran;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -101,6 +102,21 @@ class PdfController extends Controller
         $data['data'] = Pegawai::where('id', $id)->get();
         $pdf = PDF::loadview('pdf.master.pegawai.detail', $data)->setPaper('a4', 'landscape');
         return $pdf->stream('jenis.pdf');
+    }
+
+    public function indexprofilepdf(Request $request)
+    {
+        $data['data'] = $this->MasterService->getDataprofile();
+        $pdf = PDF::loadview('pdf.master.profile.index', $data)->setPaper('a4', 'landscape');
+        return $pdf->stream('profile.pdf');
+    }
+
+    public function indexprofilepdfdetail(Request $request, $id)
+    {
+        $id = $request->id;
+        $data['data'] = Profile::where('id', $id)->get();
+        $pdf = PDF::loadview('pdf.master.profile.detail', $data)->setPaper('a4', 'landscape');
+        return $pdf->stream('profile.pdf');
     }
 
     public function indexuserpdf(Request $request)

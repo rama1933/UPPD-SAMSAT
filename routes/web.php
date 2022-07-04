@@ -64,6 +64,12 @@ Route::middleware('role:admin')->group(function () {
             Route::post('/update', [App\Http\Controllers\MasterController::class, 'updatepegawai'])->name('pegawai.update');
         });
 
+        Route::prefix('/profile')->group(function () {
+            Route::get('/', [App\Http\Controllers\MasterController::class, 'indexprofile'])->name('profile.index');
+            Route::post('/store', [App\Http\Controllers\MasterController::class, 'storeprofile'])->name('profile.store');
+            Route::post('/update', [App\Http\Controllers\MasterController::class, 'updateprofile'])->name('profile.update');
+        });
+
         Route::prefix('/dealer')->group(function () {
             Route::get('/', [App\Http\Controllers\MasterController::class, 'indexdealer'])->name('dealer.index');
             Route::post('/store', [App\Http\Controllers\MasterController::class, 'storedealer'])->name('dealer.store');
@@ -121,6 +127,11 @@ Route::middleware('role:admin')->group(function () {
                 Route::prefix('/pegawai')->group(function () {
                     Route::get('/', [App\Http\Controllers\PdfController::class, 'indexpegawaipdf'])->name('pdf.pegawai');
                     Route::get('/detail/{id}', [App\Http\Controllers\PdfController::class, 'indexpegawaipdfdetail'])->name('pdf.pegawaidetail');
+                });
+
+                Route::prefix('/profile')->group(function () {
+                    Route::get('/', [App\Http\Controllers\PdfController::class, 'indexprofilepdf'])->name('pdf.profile');
+                    Route::get('/detail/{id}', [App\Http\Controllers\PdfController::class, 'indexprofilepdfdetail'])->name('pdf.profiledetail');
                 });
             });
             Route::prefix('/user')->group(function () {

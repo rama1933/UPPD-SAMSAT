@@ -9,6 +9,7 @@ use App\Models\Jenis;
 use App\Models\Dealer;
 use App\Models\Biodata;
 use App\Models\Pegawai;
+use App\Models\Profile;
 
 class MasterService
 {
@@ -73,6 +74,16 @@ class MasterService
             $data = Pegawai::all();
         } else {
             $data =  Pegawai::where('id', $id)->first();
+        }
+        return $data;
+    }
+
+    function getDataProfile($id = null)
+    {
+        if ($id === null) {
+            $data = Profile::all();
+        } else {
+            $data =  Profile::where('id', $id)->first();
         }
         return $data;
     }
@@ -152,6 +163,23 @@ class MasterService
                 "jk" => $data['jk'],
                 "jabatan" => $data['jabatan'],
                 "no_hp" => $data['no_hp'],
+                "created_at" => now(),
+                "updated_at" => now()
+            ]);
+        return true;
+    }
+
+    public static function storeProfile(array $data)
+    {
+        $store =
+            Profile::create([
+                "nama" => $data['nama'],
+                "alamat" => $data['alamat'],
+                "profile" => $data['profile'],
+                "tujuan" => $data['tujuan'],
+                "visi" => $data['visi'],
+                "misi" => $data['misi'],
+                "moto" => $data['moto'],
                 "created_at" => now(),
                 "updated_at" => now()
             ]);
@@ -250,6 +278,25 @@ class MasterService
         return true;
     }
 
+    public static function updateProfile($id, array $data)
+    {
+        $find = Profile::find($id);
+        $toward =
+            [
+                "nama" => $data['nama'],
+                "alamat" => $data['alamat'],
+                "profile" => $data['profile'],
+                "tujuan" => $data['tujuan'],
+                "visi" => $data['visi'],
+                "misi" => $data['misi'],
+                "moto" => $data['moto'],
+                "created_at" => now(),
+                "updated_at" => now()
+            ];
+        $find->update($toward);
+        return true;
+    }
+
     public static function deleteDataJenis($id)
     {
         try {
@@ -306,6 +353,16 @@ class MasterService
     {
         try {
             Pegawai::find($id)->delete();
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
+
+    public static function deleteDataProfile($id)
+    {
+        try {
+            Profile::find($id)->delete();
             return true;
         } catch (\Throwable $th) {
             return false;

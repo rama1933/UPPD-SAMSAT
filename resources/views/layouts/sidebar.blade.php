@@ -57,6 +57,12 @@
                     <p>Pegawai</p>
                 </a>
             </li>
+            <li class="{{set_active('profile.index')}}">
+                <a href="{{ route('profile.index') }}">
+                    <i class="nc-icon nc-badge"></i>
+                    <p>Profile Samsat</p>
+                </a>
+            </li>
             <li class="nav-item">
                 <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
                     <p>Managemen User</p>

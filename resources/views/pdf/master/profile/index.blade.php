@@ -70,38 +70,57 @@
                 Jl. Jend. Sudirman Km. 3,5 RT.2 RW.1 Desa Karasikan Kec. Sungai Raya Kandangan 71271
                 Telp./Fax (0517) 21237 Email : uppdkandangan.dispenda@gmail.com
             </h6>
+            {{-- <h6 style="margin-top: -15px">
+                Jalan Aluh Idut No. 66 A Kandangan Kab. Hulu Sungai Selatan
+                KANDANGAN 71211
+            </h6> --}}
         </div>
     </div>
     <hr style="margin-top: -10px">
-    <h3 style="text-align: center;">DATA MASTER PEGAWAI</h3>
+    <h3 style="text-align: center;">DATA MASTER PROFILE SAMSAT</h3>
     <table id="table" style="width: 100%">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Nip</th>
-                <th>Nama</th>
-                <th>no Hp</th>
-                <th>Jabatan</th>
-                <th>Jenis Kelamamin</th>
-            </tr>
-        </thead>
         <tbody>
             @foreach ($data as $data)
-            @php
-            $date = strtotime($data->tanggal_lahir);
-            @endphp
             <tr>
-                <td>{{$loop->iteration}}</td>
-                <td>{{ $data->nip }}</td>
-                <td>{{ $data->nama }}</td>
-                <td>{{ $data->no_hp }}</td>
-                <td>{{ $data->jabatan }}</td>
-                <td>{{ $data->jk }}</td>
+                <th style="text-align: left">Nama</th>
+                <td style="text-align: center">:</td>
+                <td style="padding-left: 10px">{{ $data->nama }}</td>
             </tr>
+            <tr>
+                <th style="text-align: left">Alamat</th>
+                <td style="text-align: center">:</td>
+                <td style="padding-left: 10px">{{ $data->alamat }}</td>
+            </tr>
+            <tr>
+                <th style="text-align: left">Profile</th>
+                <td style="text-align: center">:</td>
+                <td style="padding-left: 10px">{!! $data->profile !!}</td>
+            </tr>
+            <tr>
+                <th style="text-align: left">Tujuan</th>
+                <td style="text-align: center">:</td>
+                <td style="padding-left: 10px">{{ $data->tujuan }}</td>
+            </tr>
+            <tr>
+                <th style="text-align: left">Visi</th>
+                <td style="text-align: center">:</td>
+                <td style="padding-left: 10px">{{ $data->visi }}</td>
+            </tr>
+            <tr>
+                <th style="text-align: left">Misi</th>
+                <td style="text-align: center">:</td>
+                <td style="padding-left: 10px">{!! $data->misi !!}</td>
+            </tr>
+            <tr>
+                <th style="text-align: left">Moto</th>
+                <td style="text-align: center">:</td>
+                <td style="padding-left: 10px">{{ $data->moto }}</td>
+            </tr>
+
             @endforeach
         </tbody>
     </table>
-    <div class="row" style="text-align: center;float:right;width: 30%;">
+    {{-- <div class="row" style="text-align: center;float:right;width: 30%;">
         <div>
             <table style="margin-top: 10px;width: 100%;border: none">
                 <tr style="border: none">
@@ -128,7 +147,7 @@
                 kasi pelayanan PKB BBNKB
             </h6>
         </div>
-    </div>
+    </div> --}}
 </body>
 
 </html>

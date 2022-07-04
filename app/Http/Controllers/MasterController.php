@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Services\MasterService;
 use Illuminate\Support\Facades\Crypt;
@@ -45,6 +46,11 @@ class MasterController extends Controller
         return view('admin.master.pegawai.index');
     }
 
+    public function indexprofile()
+    {
+        return view('admin.master.profile.index');
+    }
+
     public function data(Request $request)
     {
         switch ($request->type) {
@@ -66,6 +72,9 @@ class MasterController extends Controller
             case 'pegawai':
                 $data = $this->service->getDataPegawai();
                 break;
+            case 'profile':
+                $data = $this->service->getDataProfile();
+                break;
             default:
                 $data = collect();
                 break;
@@ -73,6 +82,24 @@ class MasterController extends Controller
 
         return DataTables::of($data)
             ->addIndexColumn()
+            ->addColumn('profiletext', function ($data) {
+                return Str::limit($data->profile, 50, $end = '....');
+            })
+            ->addColumn('alamattext', function ($data) {
+                return Str::limit($data->alamat, 50, $end = '....');
+            })
+            ->addColumn('tujuantext', function ($data) {
+                return Str::limit($data->tujuan, 50, $end = '....');
+            })
+            ->addColumn('visitext', function ($data) {
+                return Str::limit($data->visi, 50, $end = '....');
+            })
+            ->addColumn('misitext', function ($data) {
+                return Str::limit($data->misi, 50, $end = '....');
+            })
+            ->addColumn('mototext', function ($data) {
+                return Str::limit($data->moto, 50, $end = '....');
+            })
             ->addColumn('ttl', function ($data) {
                 $time = strtotime($data->tanggal_lahir);
                 $tanggal = date('d-m-Y', $time);
@@ -93,6 +120,11 @@ class MasterController extends Controller
                                         <button onclick="show(' . $data->id . ')" data-toggle="modal" data-target="#modal-show" class="btn btn-sm btn-flat btn-success my-2"><i class="fa fa-eye"></i></button>
                                         <button onclick="deletebtn(' . $data->id . ')" class="btn btn-sm btn-flat btn-danger my-2"><i class="fa fa-trash"></i></button>
                                     ';
+                } elseif ($request->type == 'profile') {
+                    return '
+                                        <a href="/admin/pdf/master/profile/detail/' . $data->id . '"  class="btn btn-sm btn-flat btn-warning" target="_blank" title="Unduh Dokumen (PDF)"><i class="fa fa-print"></i></a>
+                                        <button onclick="edit(' . $data->id . ')" data-toggle="modal" data-target="#modal-edit" class="btn btn-sm btn-flat btn-primary my-2"><i class="fa fa-pencil"></i></button>
+                                    ';
                 } else {
                     return '<ul class="nav nav-pills nav-primary">
                                         <button onclick="edit(' . $data->id . ')" data-toggle="modal" data-target="#modal-edit" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-edit"></i></button>
@@ -100,7 +132,7 @@ class MasterController extends Controller
                                     </ul>';
                 }
             })
-            ->rawColumns(['ttl', 'button'])
+            ->rawColumns(['ttl', 'button', 'profiletext', 'almattext', 'tujuantext', 'visitext', 'misitext', 'mototext'])
             ->make(true);
     }
 
@@ -125,6 +157,9 @@ class MasterController extends Controller
                 break;
             case 'pegawai':
                 $data = $this->service->getDataPegawai($id);
+                break;
+            case 'profile':
+                $data = $this->service->getDataProfile($id);
                 break;
             default:
                 $data = collect();
@@ -171,6 +206,19 @@ class MasterController extends Controller
                     'alamat' => $data->alamat,
                 ]
             );
+        } elseif ($request->type == 'profile') {
+            return response()->json(
+                [
+                    'id' => $data->id,
+                    'nama' => $data->nama,
+                    'alamat' => $data->alamat,
+                    'profile' => $data->profile,
+                    'tujuan' => $data->tujuan,
+                    'visi' => $data->visi,
+                    'misi' => $data->misi,
+                    'moto' => $data->moto,
+                ]
+            );
         } else {
             return response()->json(
                 [
@@ -202,6 +250,9 @@ class MasterController extends Controller
                 break;
             case 'pegawai':
                 $data = $this->service->deleteDataPegawai($id);
+                break;
+            case 'profile':
+                $data = $this->service->deleteDataProfile($id);
                 break;
             default:
                 $data = collect();
@@ -392,6 +443,31 @@ class MasterController extends Controller
         }
     }
 
+    public function storeprofile(Request $request)
+    {
+        $validator = Validator::make(request()->all(), []);
+
+        if ($validator->fails()) {
+            return response()->json([
+                "status" => "failed",
+                "message" => $validator->errors()->first(),
+            ]);
+        } else {
+            $store = $this->service->storeProfile($request->all());
+            if ($store == true) {
+                return response()->json([
+                    "status" => "success",
+                    "messages" => "Berhasil Menambahkan Data",
+                ]);
+            } else {
+                return response()->json([
+                    "status" => "failed",
+                    "messages" => "Gagal Menambahkan Data",
+                ]);
+            }
+        }
+    }
+
     public function updatejenis(Request $request)
     {
         $id = $request->id;
@@ -556,6 +632,32 @@ class MasterController extends Controller
             ]);
         } else {
             $store = $this->service->updatePegawai($id, $request->all());
+            if ($store == true) {
+                return response()->json([
+                    "status" => "success",
+                    "messages" => "Berhasil memperbaharui Data",
+                ]);
+            } else {
+                return response()->json([
+                    "status" => "failed",
+                    "messages" => "Gagal memperbaharui Data",
+                ]);
+            }
+        }
+    }
+
+    public function updateprofile(Request $request)
+    {
+        $id = $request->id;
+        $validator = Validator::make(request()->all(), []);
+
+        if ($validator->fails()) {
+            return response()->json([
+                "status" => "failed",
+                "message" => $validator->errors()->first(),
+            ]);
+        } else {
+            $store = $this->service->updateProfile($id, $request->all());
             if ($store == true) {
                 return response()->json([
                     "status" => "success",
