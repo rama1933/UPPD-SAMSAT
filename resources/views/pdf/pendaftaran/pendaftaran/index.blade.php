@@ -84,7 +84,7 @@
                 <th>No</th>
                 <th>NIK</th>
                 <th>Nama</th>
-                <th>Dealer</th>
+                <th>Nama Dealer</th>
                 <th>Tipe / Jenis</th>
                 <th>Merk</th>
                 <th>Warna</th>

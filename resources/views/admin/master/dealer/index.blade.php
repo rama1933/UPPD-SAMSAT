@@ -30,7 +30,7 @@
                         No
                     </th>
                     <th>
-                        Nama
+                        Nama Dealer
                     </th>
                     <th>
                         Alamat

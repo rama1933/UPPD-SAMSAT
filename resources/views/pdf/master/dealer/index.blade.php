@@ -82,7 +82,7 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>Nama</th>
+                <th>Nama Dealer</th>
                 <th>Alamat</th>
             </tr>
         </thead>

@@ -90,7 +90,7 @@
                                 </td>
                             </tr>
 
-                            <tr>
+                            {{--  <tr>
                                 <td>
                                     <h5>Cetak Laporan Pendaftaran Selesai</h5>
                                 </td>
@@ -98,7 +98,7 @@
                                     <a href="{{route('pdf.trxpendaftaranselesai')}}" target="_blank" class="btn btn-success"><i
                                             class="fa fa-print"></i></a>
                                 </td>
-                            </tr>
+                            </tr>  --}}
 
 
                     </tbody>

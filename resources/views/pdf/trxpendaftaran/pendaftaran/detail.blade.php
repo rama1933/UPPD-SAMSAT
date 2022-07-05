@@ -92,7 +92,7 @@
             </tr>
 
             <tr>
-                <th style="text-align: left">Dealer</th>
+                <th style="text-align: left">Nama Dealer</th>
                 <td style="text-align: center">:</td>
                 <td style="padding-left: 10px">
                     {{ $data->dealer->nama }}
