@@ -123,7 +123,7 @@
                 <td style="padding-left: 10px">{{ $data->tahun }}</td>
             </tr>
             <tr>
-                <th style="text-align: left">Biaya Pendaftaran</th>
+                <th style="text-align: left">Biaya Pembuatan</th>
                 <td style="text-align: center">:</td>
                 <td style="padding-left: 10px">{{ $data->type->harga }}</td>
             </tr>

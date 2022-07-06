@@ -38,7 +38,7 @@
                             </select>
                         </div>
                         <div class="col-md-12">
-                            <label for="harga">Biaya Pendaftaran <small class="text-danger">*</small></label>
+                            <label for="harga">Biaya Pembuatan <small class="text-danger">*</small></label>
                             <input type="text" id="harga" class="form-control" disabled>
                         </div>
 
@@ -91,7 +91,7 @@
                             </select>
                         </div>
                         <div class="col-md-12">
-                            <label for="harga">Biaya Pendaftaran <small class="text-danger">*</small></label>
+                            <label for="harga">Biaya Pembuatan <small class="text-danger">*</small></label>
                             <input type="text" id="hargaEdit" class="form-control" disabled>
                         </div>
                         <div class="col-md-12">

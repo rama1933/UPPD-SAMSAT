@@ -49,7 +49,7 @@
                         Tahun Pembuatan
                     </th>
                     <th style="padding-right:40px;border-spacing: 0px;white-space: nowrap;">
-                        Biaya Pendaftaran
+                        Biaya Pembuatan
                     </th>
                     <th style="padding-right:40px;border-spacing: 0px;white-space: nowrap;">
                         Tangal Pendaftaran

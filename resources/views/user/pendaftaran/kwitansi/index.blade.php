@@ -49,7 +49,7 @@
                         Tahun Pembuatan
                     </th>
                     <th>
-                        Biaya Pendaftaran
+                        Biaya Pembuatan
                     </th>
                     <th>
                         Tangal Pendaftaran

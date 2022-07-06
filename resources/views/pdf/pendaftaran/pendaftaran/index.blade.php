@@ -88,7 +88,7 @@
                 <th>Tipe / Jenis / Merk</th>
                 <th>Warna</th>
                 <th>Tahun Pembuatan</th>
-                <th>Biaya Pendaftaran</th>
+                <th>Biaya Pembuatan</th>
                 <th>Tgl Pendaftaran</th>
                 {{-- <th>Nopol</th>
                 <th>Tgl STNK</th>
