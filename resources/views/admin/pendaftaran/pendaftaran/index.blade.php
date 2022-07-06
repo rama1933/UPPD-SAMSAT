@@ -27,43 +27,43 @@
         <div class="table-responsive">
             <table class="table" id="table">
                 <thead class=" text-primary">
-                    <th>
+                    <th style="padding-right:30px;border-spacing: 0px;white-space: nowrap;">
                         No
                     </th>
-                    <th>
+                    <th style="padding-right:30px;border-spacing: 0px;white-space: nowrap;">
                         Nik
                     </th>
-                    <th>
+                    <th style="padding-right:30px;border-spacing: 0px;white-space: nowrap;">
                         Nama
                     </th>
-                    <th>
+                    <th style="padding-right:30px;border-spacing: 0px;white-space: nowrap;">
                         Dealer
                     </th>
-                    <th>
-                        Tipe / Jenis
+                    <th style="padding-right:30px;border-spacing: 0px;white-space: nowrap;">
+                        Tipe / Jenis / Merk
                     </th>
-                    <th>
+                    {{--  <th style="padding-right:30px;border-spacing: 0px;white-space: nowrap;">
                         Merk
-                    </th>
-                    <th>
+                    </th>  --}}
+                    <th style="padding-right:30px;border-spacing: 0px;white-space: nowrap;">
                         Warna
                     </th>
-                    <th>
+                    <th style="padding-right:30px;border-spacing: 0px;white-space: nowrap;">
                         Tahun Pembuatan
                     </th>
-                    <th>
+                    <th style="padding-right:30px;border-spacing: 0px;white-space: nowrap;">
                         Tangal Pendaftaran
                     </th>
-                    <th>
+                    <th style="padding-right:30px;border-spacing: 0px;white-space: nowrap;">
                         Nopol
                     </th>
-                    <th>
+                    <th style="padding-right:30px;border-spacing: 0px;white-space: nowrap;">
                         Tanggal STNK
                     </th>
-                    <th>
+                    <th style="padding-right:30px;border-spacing: 0px;white-space: nowrap;">
                         Tanggal Pajak
                     </th>
-                    <th>
+                    <th style="padding-right:30px;border-spacing: 0px;white-space: nowrap;">
                         Aksi
                     </th>
 

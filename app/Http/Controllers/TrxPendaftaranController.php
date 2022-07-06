@@ -26,7 +26,6 @@ class TrxPendaftaranController extends Controller
     public function indexpendaftaranadmin()
     {
         $data['dealer'] = $this->serviceMaster->getDataDealer();
-        $data['merk'] = $this->serviceMaster->getDataMerk();
         $data['tipe'] = $this->serviceMaster->getDataType();
 
         return view('admin.pendaftaran.pendaftaran.index', $data);
@@ -35,7 +34,6 @@ class TrxPendaftaranController extends Controller
     public function indexpendaftaranadminselesai()
     {
         $data['dealer'] = $this->serviceMaster->getDataDealer();
-        $data['merk'] = $this->serviceMaster->getDataMerk();
         $data['tipe'] = $this->serviceMaster->getDataType();
 
         return view('admin.pendaftaran.selesai.index', $data);
@@ -44,7 +42,6 @@ class TrxPendaftaranController extends Controller
     public function indexadminkwitansi()
     {
         $data['dealer'] = $this->serviceMaster->getDataDealer();
-        $data['merk'] = $this->serviceMaster->getDataMerk();
         $data['tipe'] = $this->serviceMaster->getDataType();
         return view('admin.pendaftaran.kwitansi.index', $data);
     }
@@ -69,11 +66,8 @@ class TrxPendaftaranController extends Controller
             ->addColumn('dealer', function ($data) use ($request) {
                 return $data->dealer->nama;
             })
-            ->addColumn('merk', function ($data) use ($request) {
-                return $data->merk->nama;
-            })
             ->addColumn('type', function ($data) use ($request) {
-                $type = $data->type->type . '/' . $data->type->jenis;
+                $type = $data->type->type . '/' . $data->type->jenis . '/' . $data->type->merk;
                 return $type;
             })
             ->addColumn('harga', function ($data) use ($request) {

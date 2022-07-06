@@ -34,11 +34,11 @@
                         Dealer
                     </th>
                     <th>
-                        Tipe/Jenis
+                        Tipe/Jenis/Merk
                     </th>
-                    <th>
+                    {{--  <th>
                         Merk
-                    </th>
+                    </th>  --}}
                     <th>
                         Warna
                     </th>

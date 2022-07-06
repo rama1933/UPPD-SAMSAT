@@ -132,6 +132,7 @@ class MasterService
                 "jenis" => $data['jenis'],
                 "type" => $data['type'],
                 "harga" => $data['harga'],
+                "merk" => $data['merk'],
                 "created_at" => now(),
                 "updated_at" => now()
             ]);
@@ -236,6 +237,7 @@ class MasterService
                 "jenis" => $data['jenis'],
                 "type" => $data['type'],
                 "harga" => $data['harga'],
+                "merk" => $data['merk'],
                 "created_at" => now(),
                 "updated_at" => now()
             ];

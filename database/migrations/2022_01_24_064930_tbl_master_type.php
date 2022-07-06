@@ -18,6 +18,7 @@ class TblMasterType extends Migration
             $table->string('type');
             $table->string('jenis');
             $table->string('harga');
+            $table->string('merk');
             $table->timestamps();
         });
     }

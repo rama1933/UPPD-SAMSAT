@@ -148,7 +148,7 @@ class PdfController extends Controller
     public function indextrxpendaftaranpdfdetail(Request $request, $id)
     {
         $id = $request->id;
-        $data['data'] = Pendaftaran::with('dealer')->with('merk')->with('type')->where('id', $id)->get();
+        $data['data'] = Pendaftaran::with('dealer')->with('type')->where('id', $id)->get();
         $pdf = PDF::loadview('pdf.trxpendaftaran.pendaftaran.detail', $data)->setPaper('a4', 'landscape');
         return $pdf->stream('pendaftaran.pdf');
     }
@@ -164,8 +164,8 @@ class PdfController extends Controller
     public function indextrxpendaftaranpdfkwitansi(Request $request, $id)
     {
         $id = $request->id;
-        $data['data'] = Pendaftaran::with('dealer')->with('merk')->with('type')->where('id', $id)->get();
-        $data['data2'] = Pendaftaran::with('dealer')->with('merk')->with('type')->where('id', $id)->get();
+        $data['data'] = Pendaftaran::with('dealer')->with('type')->where('id', $id)->get();
+        $data['data2'] = Pendaftaran::with('dealer')->with('type')->where('id', $id)->get();
         $pdf = PDF::loadview('pdf.trxpendaftaran.pendaftaran.kwitansi', $data)->setPaper('a4', 'landscape');
         return $pdf->stream('pendaftaran.pdf');
     }
@@ -181,7 +181,7 @@ class PdfController extends Controller
     public function indexpendaftaranpdfdetail(Request $request, $id)
     {
         $id = $request->id;
-        $data['data'] = Pendaftaran::with('dealer')->with('merk')->with('type')->where('id', $id)->get();
+        $data['data'] = Pendaftaran::with('dealer')->with('type')->where('id', $id)->get();
         $pdf = PDF::loadview('pdf.pendaftaran.pendaftaran.detail', $data)->setPaper('a4', 'landscape');
         return $pdf->stream('pendaftaran.pdf');
     }
@@ -189,8 +189,8 @@ class PdfController extends Controller
     public function indexpendaftaranpdfkwitansi(Request $request, $id)
     {
         $id = $request->id;
-        $data['data'] = Pendaftaran::with('dealer')->with('merk')->with('type')->where('id', $id)->get();
-        $data['data2'] = Pendaftaran::with('dealer')->with('merk')->with('type')->where('id', $id)->get();
+        $data['data'] = Pendaftaran::with('dealer')->with('type')->where('id', $id)->get();
+        $data['data2'] = Pendaftaran::with('dealer')->with('type')->where('id', $id)->get();
         $pdf = PDF::loadview('pdf.pendaftaran.pendaftaran.kwitansi', $data)->setPaper('a4', 'landscape');
         return $pdf->stream('pendaftaran.pdf');
     }

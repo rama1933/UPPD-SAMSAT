@@ -85,8 +85,7 @@
                 <th>NIK</th>
                 <th>Nama</th>
                 <th>Nama Dealer</th>
-                <th>Tipe / Jenis</th>
-                <th>Merk</th>
+                <th>Tipe / Jenis / Merk</th>
                 <th>Warna</th>
                 <th>Tahun Pembuatan</th>
                 <th>Biaya Pendaftaran</th>
@@ -103,8 +102,8 @@
                 <td>{{ $data->biodata->nik }}</td>
                 <td>{{ $data->biodata->nama }}</td>
                 <td>{{ $data->dealer->nama }}</td>
-                <td>{{ $data->type->type }}/ {{ $data->type->jenis }}</td>
-                <td>{{ $data->merk->nama }}</td>
+                <td>{{ $data->type->type }}/ {{ $data->type->jenis }}/ {{ $data->type->merk }}</td>
+                {{--  <td>{{ $data->merk->nama }}</td>  --}}
                 <td>{{ $data->warna }}</td>
                 <td>{{ $data->tahun }}</td>
                 <td>{{ $data->type->harga }}</td>
@@ -151,10 +150,10 @@
             </table>
             <hr>
             <h4 style="margin-bottom: 90px;margin-top: -5px">
-                mengetahui <br>
+                Mengetahui <br>
             </h4>
             <h4 style="margin-bottom: -6px">
-                Gusti roby azwar, s.ap
+               Gusti Roby Azwar, S.AP
             </h4>
             <hr>
             <h6 style="margin-top: -6px">

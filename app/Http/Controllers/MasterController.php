@@ -195,6 +195,7 @@ class MasterController extends Controller
                     'id' => $data->id,
                     'type' => $data->type,
                     'jenis' => $data->jenis,
+                    'merk' => $data->merk,
                     'harga' => $data->harga,
                 ]
             );

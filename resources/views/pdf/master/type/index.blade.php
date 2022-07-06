@@ -84,6 +84,7 @@
                 <th>No</th>
                 <th>Tipe</th>
                 <th>Jenis</th>
+                <th>Merk</th>
             </tr>
         </thead>
         <tbody>
@@ -92,6 +93,7 @@
                 <td>{{$loop->iteration}}</td>
                 <td>{{ $data->type }}</td>
                 <td>{{ $data->jenis }}</td>
+                <td>{{ $data->merk }}</td>
             </tr>
             @endforeach
         </tbody>
@@ -112,10 +114,10 @@
             </table>
             <hr>
             <h4 style="margin-bottom: 90px;margin-top: -5px">
-                mengetahui <br>
+                Mengetahui <br>
             </h4>
             <h4 style="margin-bottom: -6px">
-                Gusti roby azwar, s.ap
+               Gusti Roby Azwar, S.AP
             </h4>
             <hr>
             <h6 style="margin-top: -6px">

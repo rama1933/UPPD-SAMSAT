@@ -37,6 +37,9 @@
                         Jenis
                     </th>
                     <th>
+                        Merk
+                    </th>
+                    <th>
                         Biaya Pendaftaran
                     </th>
                     <th>

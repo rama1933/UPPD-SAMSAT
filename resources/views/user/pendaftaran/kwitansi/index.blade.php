@@ -39,9 +39,9 @@
                     <th>
                         Tipe/Jenis
                     </th>
-                    <th>
+                    {{--  <th>
                         Merk
-                    </th>
+                    </th>  --}}
                     <th>
                         Warna
                     </th>

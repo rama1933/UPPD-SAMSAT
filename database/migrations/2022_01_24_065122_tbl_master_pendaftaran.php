@@ -19,7 +19,6 @@ class TblMasterPendaftaran extends Migration
             $table->unsignedBigInteger('biodata_id');
             $table->unsignedBigInteger('dealer_id');
             $table->unsignedBigInteger('type_id');
-            $table->unsignedBigInteger('merk_id');
             $table->string('warna', 255)->nullable();
             $table->string('tahun', 4)->nullable();
             $table->date('tanggal')->nullable();
@@ -28,7 +27,6 @@ class TblMasterPendaftaran extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('biodata_id')->references('id')->on('tbl_biodata')->onDelete('cascade');
             $table->foreign('type_id')->references('id')->on('tbl_master_type')->onDelete('cascade');
-            $table->foreign('merk_id')->references('id')->on('tbl_master_merk')->onDelete('cascade');
             $table->foreign('dealer_id')->references('id')->on('tbl_master_dealer')->onDelete('cascade');
             $table->timestamps();
         });

@@ -29,7 +29,6 @@ class PendaftaranController extends Controller
     public function indexpendaftaran()
     {
         $data['dealer'] = $this->serviceMaster->getDataDealer();
-        $data['merk'] = $this->serviceMaster->getDataMerk();
         $data['tipe'] = $this->serviceMaster->getDataType();
         return view('user.pendaftaran.pendaftaran.index', $data);
     }
@@ -37,7 +36,6 @@ class PendaftaranController extends Controller
     public function indexkwitansi()
     {
         $data['dealer'] = $this->serviceMaster->getDataDealer();
-        $data['merk'] = $this->serviceMaster->getDataMerk();
         $data['tipe'] = $this->serviceMaster->getDataType();
         return view('user.pendaftaran.kwitansi.index', $data);
     }
@@ -58,11 +56,8 @@ class PendaftaranController extends Controller
             ->addColumn('dealer', function ($data) use ($request) {
                 return $data->dealer->nama;
             })
-            ->addColumn('merk', function ($data) use ($request) {
-                return $data->merk->nama;
-            })
             ->addColumn('type', function ($data) use ($request) {
-                $type = $data->type->type . '/' . $data->type->jenis;
+                $type = $data->type->type . '/' . $data->type->jenis . '/' . $data->type->merk;
                 return $type;
             })
             ->addColumn('harga', function ($data) use ($request) {
@@ -95,7 +90,6 @@ class PendaftaranController extends Controller
         $validator = Validator::make(request()->all(), [
             'dealer_id' => 'required',
             'type_id' => 'required',
-            'merk_id' => 'required',
             'warna' => 'required',
             'tahun' => 'required',
         ]);
@@ -132,10 +126,8 @@ class PendaftaranController extends Controller
         $id = $request->id;
         $data = $this->service->getDataPendaftaran($id);
         $datadealer = $this->serviceMaster->getDatadealer($data->dealer_id);
-        $dataMerk = $this->serviceMaster->getDataMerk($data->merk_id);
         $dataType = $this->serviceMaster->getDataType($data->type_id);
         $datadealerAll = $this->serviceMaster->getDatadealer();
-        $dataMerkAll = $this->serviceMaster->getDataMerk();
         $dataTypeAll = $this->serviceMaster->getDataType();
         return response()->json(
             [
@@ -143,10 +135,8 @@ class PendaftaranController extends Controller
                 'warna' => $data->warna,
                 'tahun' => $data->tahun,
                 'dealer' => $datadealer,
-                'merk' => $dataMerk,
                 'type' => $dataType,
                 'dealerall' => $datadealerAll,
-                'merkall' => $dataMerkAll,
                 'typeall' => $dataTypeAll,
             ]
         );

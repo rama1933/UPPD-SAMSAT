@@ -25,17 +25,17 @@
                                 <a href="{{route('pdf.dealer')}}" target="_blank" class="btn btn-success"><i class="fa fa-print"></i></a>
                             </td>
                         </tr>
-                        <tr>
+                        {{--  <tr>
                             <td>
                                 <h5>Cetak Laporan Merk</h5>
                             </td>
                             <td>
                                 <a href="{{route('pdf.merk')}}" target="_blank" class="btn btn-success"><i class="fa fa-print"></i></a>
                             </td>
-                        </tr>
+                        </tr>  --}}
                         <tr>
                             <td>
-                                <h5>Cetak Laporan Tipe/Jenis</h5>
+                                <h5>Cetak Laporan Tipe/Jenis/Merk</h5>
                             </td>
                             <td>
                                 <a href="{{route('pdf.type')}}" target="_blank" class="btn btn-success"><i class="fa fa-print"></i></a>
@@ -43,7 +43,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <h5>Cetak Laporan Biaya Pendaftaran</h5>
+                                <h5>Cetak Laporan Biaya Pembuatan</h5>
                             </td>
                             <td>
                                 <a href="{{route('pdf.harga')}}" target="_blank" class="btn btn-success"><i class="fa fa-print"></i></a>

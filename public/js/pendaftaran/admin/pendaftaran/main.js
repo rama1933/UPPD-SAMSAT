@@ -38,10 +38,10 @@ function datatable() {
                 data: 'type',
                 name: 'type'
             },
-            {
-                data: 'merk',
-                name: 'merk'
-            },
+            // {
+            //     data: 'merk',
+            //     name: 'merk'
+            // },
             {
                 data: 'warna',
                 name: 'warna'

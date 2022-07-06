@@ -20,20 +20,11 @@
                             </select>
                         </div>
                         <div class="form-group col-lg-12">
-                            <label for="merk">merk <small class="text-danger">*</small></label>
-                            <select name="merk_id" class="form-control" required>
-                                <option value="">merk</option>
-                                @foreach ($merk as $merk)
-                                <option value="{{ $merk->id }}">{{ $merk->nama }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group col-lg-12">
                             <label for="type">type <small class="text-danger">*</small></label>
                             <select name="type_id" id="type_id" class="form-control" required>
-                                <option value="">type/jenis</option>
+                                <option value="">type/jenis/merk</option>
                                 @foreach ($tipe as $tipe)
-                                <option value="{{ $tipe->id }}">{{ $tipe->type }}/{{ $tipe->jenis }}</option>
+                                <option value="{{ $tipe->id }}">{{ $tipe->type }}/{{ $tipe->jenis }}/{{ $tipe->merk }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -81,15 +72,15 @@
                             </select>
                         </div>
                         <div class="form-group col-lg-12">
-                            <label for="type">type/jenis <small class="text-danger">*</small></label>
+                            <label for="type">type/jenis/merk <small class="text-danger">*</small></label>
                             <select id="type_idEdit" name="type_id" class="form-control" required>
                             </select>
                         </div>
-                        <div class="form-group col-lg-12">
+                        {{--  <div class="form-group col-lg-12">
                             <label for="merk">merk <small class="text-danger">*</small></label>
                             <select name="merk_id" id="merk_idEdit" class="form-control" required>
                             </select>
-                        </div>
+                        </div>  --}}
                         <div class="col-md-12">
                             <label for="harga">Biaya Pendaftaran <small class="text-danger">*</small></label>
                             <input type="text" id="hargaEdit" class="form-control" disabled>

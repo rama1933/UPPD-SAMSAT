@@ -98,18 +98,18 @@
                     {{ $data->dealer->nama }}
                 </td>
             </tr>
-            <tr>
+            {{--  <tr>
                 <th style="text-align: left">Merk</th>
                 <td style="text-align: center">:</td>
                 <td style="padding-left: 10px">
                     {{ $data->merk->nama }}
                 </td>
-            </tr>
+            </tr>  --}}
             <tr>
-                <th style="text-align: left">Tipe / Jenis</th>
+                <th style="text-align: left">Tipe / Jenis /Merk</th>
                 <td style="text-align: center">:</td>
                 <td style="padding-left: 10px">
-                    {{ $data->type->type }} / {{ $data->type->jenis }}
+                    {{ $data->type->type }} / {{ $data->type->jenis }} / {{ $data->type->merk }}
                 </td>
             </tr>
             <tr>
@@ -184,10 +184,10 @@
             </table>
             <hr>
             <h4 style="margin-bottom: 90px;margin-top: -5px">
-                mengetahui <br>
+                Mengetahui <br>
             </h4>
             <h4 style="margin-bottom: -6px">
-                Gusti roby azwar, s.ap
+                Gusti Roby Azwar, S.AP
             </h4>
             <hr>
             <h6 style="margin-top: -6px">

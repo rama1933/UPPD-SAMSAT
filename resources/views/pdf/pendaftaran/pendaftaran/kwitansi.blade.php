@@ -76,7 +76,7 @@
     </div>
 </div>
     <hr style="margin-top: -10px">
-    <h5 style="text-align: center;margin-top: 10px">KWITANSI TAGIHAN BIAYA PENDAFTARAN</h5>
+    <h5 style="text-align: center;margin-top: 10px">KWITANSI TAGIHAN BIAYA PEMBUATAN</h5>
     <hr>
     <table id="table" style="width: 100%">
         <tbody>
@@ -103,24 +103,24 @@
                 <th style="text-align: left">Keterangan</th>
                 <td style="text-align: center">:</td>
                 <td style="padding-left: 10px">
-                    Pendafran Kendaraan Baru
+                    Pendaftaran Kendaraan Baru
                 </td>
             </tr>
             <tr>
                 <th style="text-align: left">Tipe / Jenis</th>
                 <td style="text-align: center">:</td>
                 <td style="padding-left: 10px">
-                    {{ $data->type->type }} / {{ $data->type->jenis }}
+                    {{ $data->type->type }} / {{ $data->type->jenis }}/ {{ $data->type->merk }}
                 </td>
             </tr>
 
-            <tr>
+            {{--  <tr>
                 <th style="text-align: left">Merk</th>
                 <td style="text-align: center">:</td>
                 <td style="padding-left: 10px">
                     {{ $data->merk->nama }}
                 </td>
-            </tr>
+            </tr>  --}}
 
             <tr>
                 <th style="text-align: left">Warna</th>
@@ -175,7 +175,7 @@
                         {{--  <hr>  --}}
                         <h4 style="margin-bottom: 60px;margin-top: -5px">
                             Kandangan, {{ date('d-m-Y') }} <br>
-                            mengetahui,
+                            Mengetahui,
                         </h4>
                         <h4 style="margin-bottom: -6px">
                            {{ $data2->biodata->nama }}

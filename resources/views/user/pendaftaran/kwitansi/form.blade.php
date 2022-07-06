@@ -19,7 +19,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group col-lg-12">
+                        {{--  <div class="form-group col-lg-12">
                             <label for="merk">merk <small class="text-danger">*</small></label>
                             <select name="merk_id" class="form-control" required>
                                 <option value="">merk</option>
@@ -27,7 +27,7 @@
                                 <option value="{{ $merk->id }}">{{ $merk->nama }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div>  --}}
                         <div class="form-group col-lg-12">
                             <label for="type">type <small class="text-danger">*</small></label>
                             <select name="type_id" id="type_id" class="form-control" required>

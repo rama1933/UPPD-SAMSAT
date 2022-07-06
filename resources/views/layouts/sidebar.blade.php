@@ -33,16 +33,16 @@
                     <p>Dealer</p>
                 </a>
             </li>
-            <li class="{{set_active('merk.index')}}">
+            {{--  <li class="{{set_active('merk.index')}}">
                 <a href="{{ route('merk.index') }}">
                     <i class="nc-icon nc-app"></i>
                     <p>Merk</p>
                 </a>
-            </li>
+            </li>  --}}
             <li class="{{set_active('tipe.index')}}">
                 <a href="{{ route('tipe.index') }}">
                     <i class="nc-icon nc-app"></i>
-                    <p>Tipe/Jenis/Biaya</p>
+                    <p>Tipe/Jenis/Merk/Biaya</p>
                 </a>
             </li>
             <li class="{{set_active('biodata.index')}}">
@@ -85,12 +85,12 @@
                     <p>Pendaftaran</p>
                 </a>
             </li>
-            <li class="{{set_active('pendaftaranadminselesai.index')}}">
+            {{--  <li class="{{set_active('pendaftaranadminselesai.index')}}">
                 <a href="{{ route('pendaftaranadminselesai.index') }}">
                     <i class="nc-icon nc-paper"></i>
                     <p>Pendaftaran Selesai</p>
                 </a>
-            </li>
+            </li>  --}}
             <li class="nav-item">
                 <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
                     <p>Cetak Laporan</p>

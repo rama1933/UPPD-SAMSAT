@@ -30,10 +30,10 @@ function datatable() {
                 data: 'type',
                 name: 'type'
             },
-            {
-                data: 'merk',
-                name: 'merk'
-            },
+            // {
+            //     data: 'merk',
+            //     name: 'merk'
+            // },
             {
                 data: 'warna',
                 name: 'warna'
@@ -102,27 +102,21 @@ function edit(id) {
             $('#warnaEdit').empty();
             $('#tahunEdit').empty();
             $('#dealer_idEdit').removeAttr("required");
-            $('#merk_idEdit').removeAttr("required");
             $('#type_idEdit').removeAttr("required");
             $('#dealer_idEdit').empty();
             $('#hargaEdit').empty();
-            $('#merk_idEdit').empty();
             $('#type_idEdit').empty();
             $('#idEdit').val(id);
             $('#warnaEdit').val(response['warna']);
             $('#tahunEdit').val(response['tahun']);
             $('#hargaEdit').val(response.type.harga);
             $('#dealer_idEdit').append('<option value="' + response.dealer.id + '">' + response.dealer.nama + '</option>');
-            $('#merk_idEdit').append('<option value="' + response.merk.id + '">' + response.merk.nama + '</option>');
-            $('#type_idEdit').append('<option value="' + response.type.id + '">' + response.type.type + '/' + response.type.jenis + '</option>');
+            $('#type_idEdit').append('<option value="' + response.type.id + '">' + response.type.type + '/' + response.type.jenis + '/' + response.type.merk + '</option>');
             $.each(response.dealerall, function(key, val) {
                 $('select[id="dealer_idEdit"]').append('<option value="' + val.id + '">' + val.nama + '</option>');
             })
-            $.each(response.merkall, function(key, val) {
-                $('select[id="merk_idEdit"]').append('<option value="' + val.id + '">' + val.nama + '</option>');
-            })
             $.each(response.typeall, function(key, val) {
-                $('select[id="type_idEdit"]').append('<option value="' + val.id + '">' + val.type + '/' + val.jenis + '</option>');
+                $('select[id="type_idEdit"]').append('<option value="' + val.id + '">' + val.type + '/' + val.jenis + '/' + val.merk + '</option>');
             })
         }
     })

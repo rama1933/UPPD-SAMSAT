@@ -23,10 +23,10 @@ class Pendaftaran extends Model
         return $this->hasOne(Dealer::class, 'id', 'dealer_id');
     }
 
-    public function merk()
-    {
-        return $this->hasOne(Merk::class, 'id', 'merk_id');
-    }
+    // public function merk()
+    // {
+    //     return $this->hasOne(Merk::class, 'id', 'merk_id');
+    // }
 
     public function type()
     {

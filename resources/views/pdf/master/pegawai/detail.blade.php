@@ -85,7 +85,7 @@
             $date = strtotime($data->tanggal_lahir);
             @endphp
             <tr>
-                <th style="text-align: left">Nip</th>
+                <th style="text-align: left">NIP</th>
                 <td style="text-align: center">:</td>
                 <td style="padding-left: 10px">{{ $data->nip }}</td>
             </tr>
@@ -129,10 +129,10 @@
             </table>
             <hr>
             <h4 style="margin-bottom: 90px;margin-top: -5px">
-                mengetahui <br>
+                Mengetahui <br>
             </h4>
             <h4 style="margin-bottom: -6px">
-                Gusti roby azwar, s.ap
+               Gusti Roby Azwar, S.AP
             </h4>
             <hr>
             <h6 style="margin-top: -6px">

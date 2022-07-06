@@ -15,9 +15,9 @@ class TrxPendaftaranService
     function getDataTrxPendaftaran($id = null, $user_id = null)
     {
         if ($id === null && $user_id == null) {
-            $data = Pendaftaran::with('pendaftarans')->with('dealer')->with('merk')->with('type')->with('biodata')->get();
+            $data = Pendaftaran::with('pendaftarans')->with('dealer')->with('type')->with('biodata')->get();
         } elseif ($id === null && $user_id != null) {
-            $data = TrxPendaftaran::with('dealer')->with('merk')->with('type')->where('user_id', $user_id)->get();
+            $data = TrxPendaftaran::with('dealer')->with('type')->where('user_id', $user_id)->get();
         } else {
             $data =  TrxPendaftaran::where('id', $id)->first();
         }
@@ -27,11 +27,11 @@ class TrxPendaftaranService
     function getDataTrxPendaftaranSelesai($id = null, $user_id = null)
     {
         if ($id === null && $user_id == null) {
-            $data = Pendaftaran::with('pendaftarans')->with('dealer')->with('merk')->with('type')->with('biodata')->whereHas('pendaftarans', function ($q) {
+            $data = Pendaftaran::with('pendaftarans')->with('dealer')->with('type')->with('biodata')->whereHas('pendaftarans', function ($q) {
                 $q->where('status', '1');
             })->get();
         } elseif ($id === null && $user_id != null) {
-            $data = TrxPendaftaran::with('dealer')->with('merk')->with('type')->where('user_id', $user_id)->get();
+            $data = TrxPendaftaran::with('dealer')->with('type')->where('user_id', $user_id)->get();
         } else {
             $data =  TrxPendaftaran::where('id', $id)->first();
         }

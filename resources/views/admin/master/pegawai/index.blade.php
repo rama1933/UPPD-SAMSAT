@@ -31,7 +31,7 @@
                         No
                     </th>
                     <th>
-                        Nip
+                        NIP
                     </th>
                     <th>
                         Nama
@@ -43,7 +43,7 @@
                         Jabatan
                     </th>
                     <th>
-                        Jenis Kelamain
+                        Jenis Kelamin
                     </th>
                     <th>
                         Aksi

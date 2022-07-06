@@ -31,6 +31,10 @@ function datatable() {
                 name: 'jenis'
             },
             {
+                data: 'merk',
+                name: 'merk'
+            },
+            {
                 data: 'harga',
                 name: 'harga'
             },
@@ -81,10 +85,12 @@ function edit(id) {
             $('#idEdit').empty();
             $('#typeEdit').empty();
             $('#jenisEdit').empty();
+            $('#merkEdit').empty();
             $('#hargaEdit').empty();
             $('#idEdit').val(id);
             $('#typeEdit').val(response['type']);
             $('#jenisEdit').val(response['jenis']);
+            $('#merkEdit').val(response['merk']);
             $('#hargaEdit').val(response['harga']);
 
         }

@@ -17,6 +17,10 @@
                         <input type="text" name="jenis" class="form-control" required>
                     </div>
                     <div class="col-md-12">
+                        <label for="merk">Merk <small class="text-danger">*</small></label>
+                        <input type="text" name="merk" class="form-control" required>
+                    </div>
+                    <div class="col-md-12">
                         <label for="harga">Biaya Pembuatan <small class="text-danger">*</small></label>
                         <input type="text" name="harga" id="rupiah" class="form-control" required>
                     </div>
@@ -51,6 +55,10 @@
                         <div class="col-md-12">
                             <label for="jenis">Jenis <small class="text-danger">*</small></label>
                             <input type="text" id="jenisEdit" name="jenis" class="form-control" required>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="merk">Merk <small class="text-danger">*</small></label>
+                            <input type="text" id="merkEdit" name="merk" class="form-control" required>
                         </div>
                         <div class="col-md-12">
                             <label for="harga">Biaya Pembuatan <small class="text-danger">*</small></label>

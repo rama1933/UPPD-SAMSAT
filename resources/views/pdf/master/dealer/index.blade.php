@@ -112,10 +112,10 @@
         </table>
         <hr>
         <h4 style="margin-bottom: 90px;margin-top: -5px">
-            mengetahui <br>
+            Mengetahui <br>
         </h4>
         <h4 style="margin-bottom: -6px">
-           Gusti roby azwar, s.ap
+          Gusti Roby Azwar, S.AP
         </h4>
         <hr>
         <h6 style="margin-top: -6px">
