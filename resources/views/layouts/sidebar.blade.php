@@ -7,7 +7,7 @@
             <!-- <p>CT</p> -->
         </a>
         <a href="#" class="simple-text logo-normal">
-            UUPD SAMSAT
+            UPPD SAMSAT
            {{-- <div class="logo-image-big">
             <img src="{{ url('') }}/logo/prov.png">
           </div> --}}
