@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Biodata;
+use App\Models\Dealer;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -25,6 +26,12 @@ class UserSeeder extends Seeder
             'tempat_lahir' => 'hss'
         ]);
 
+        $dealer = Dealer::create([
+            'nama' => 'Dealer Honda AHASS 1195',
+            'no_hp' => '08080808',
+            'alamat' => 'Tibung Raya, Kec. Kandangan, Kabupaten Hulu Sungai Selatan, Kalimantan Selatan 71213',
+        ]);
+
         $admin = User::create([
             'name' => 'Admin',
             'username' => 'admin',
@@ -37,7 +44,7 @@ class UserSeeder extends Seeder
             'name' => 'User',
             'username' => 'user',
             'password' => bcrypt('rahasia'),
-            'biodata_id' => 1,
+            'dealer_id' => 1,
         ]);
 
         $user->assignRole('user');

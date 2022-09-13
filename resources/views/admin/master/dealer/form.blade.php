@@ -16,6 +16,10 @@
                             <label for="alamat">Alamat <small class="text-danger">*</small></label>
                             <input type="text" name="alamat" class="form-control" required>
                         </div>
+                        <div class="col-md-12">
+                            <label for="no_hp">No Hp <small class="text-danger">*</small></label>
+                            <input type="text" name="no_hp" class="form-control" required>
+                        </div>
                     </div>
             </div>
             <div class="modal-footer bg-whitesmoke br">
@@ -48,6 +52,11 @@
                         <div class="col-md-12">
                             <label for="alamat">Alamat <small class="text-danger">*</small></label>
                             <input type="text" id="alamatEdit" name="alamat" class="form-control" required>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label for="no_hp">No Hp <small class="text-danger">*</small></label>
+                            <input type="text" name="no_hp" id="no_hpEdit" class="form-control" required>
                         </div>
                     </div>
             </div>

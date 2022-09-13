@@ -57,14 +57,14 @@
     </footer>
     <div class="row" style="text-align: center">
         <div class="column left">
-            <img src="{{  public_path() }}/logo/prov.png" style="width:50px">
+            <img src="{{ public_path() }}/logo/prov.png" style="width:50px">
         </div>
         <div class="column right">
             <h2 style="margin-top: 10px">
-               PEMERINTAH PROVINSI KALIMANTAN SELATAN
-            BADAN KEUANGAN DAERAH
-            UNIT PELAYANAN PENDAPATAN DAERAH (UPPD)
-            KANDANGAN
+                PEMERINTAH PROVINSI KALIMANTAN SELATAN
+                BADAN KEUANGAN DAERAH
+                UNIT PELAYANAN PENDAPATAN DAERAH (UPPD)
+                KANDANGAN
             </h2>
             <h6 style="margin-top: -15px">
                 Jl. Jend. Sudirman Km. 3,5 RT.2 RW.1 Desa Karasikan Kec. Sungai Raya Kandangan 71271
@@ -84,46 +84,48 @@
                 <th>No</th>
                 <th>Nama Dealer</th>
                 <th>Alamat</th>
+                <th>No Hp</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($data as $data)
-            <tr>
-                <td>{{$loop->iteration}}</td>
-                <td>{{ $data->nama }}</td>
-                <td>{{ $data->alamat }}</td>
-            </tr>
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $data->nama }}</td>
+                    <td>{{ $data->alamat }}</td>
+                    <td>{{ $data->no_hp }}</td>
+                </tr>
             @endforeach
         </tbody>
     </table>
-<div class="row" style="text-align: center;float:right;width: 30%;">
-    <div>
-        <table style="margin-top: 10px;width: 100%;border: none">
-            <tr style="border: none">
-                <td style="border: none">Dikeluarkan</td>
-                <td style="border: none">:</td>
-                <td style="border: none">Dikandangan</td>
-            </tr>
-            <tr>
-                <td style="border: none">Pada Tanggal</td>
-                <td style="border: none">:</td>
-                <td style="border: none">{{ date('d-m-Y') }}</td>
-            </tr>
-        </table>
-        <hr>
-        <h4 style="margin-bottom: 90px;margin-top: -5px">
-            Mengetahui <br>
-        </h4>
-        <h4 style="margin-bottom: -6px">
-          Gusti Roby Azwar, S.AP
-        </h4>
-        <hr>
-        <h6 style="margin-top: -6px">
-            Kepala UPPD Kandangan
-            kasi pelayanan PKB BBNKB
-        </h6>
+    <div class="row" style="text-align: center;float:right;width: 30%;">
+        <div>
+            <table style="margin-top: 10px;width: 100%;border: none">
+                <tr style="border: none">
+                    <td style="border: none">Dikeluarkan</td>
+                    <td style="border: none">:</td>
+                    <td style="border: none">Dikandangan</td>
+                </tr>
+                <tr>
+                    <td style="border: none">Pada Tanggal</td>
+                    <td style="border: none">:</td>
+                    <td style="border: none">{{ date('d-m-Y') }}</td>
+                </tr>
+            </table>
+            <hr>
+            <h4 style="margin-bottom: 90px;margin-top: -5px">
+                Mengetahui <br>
+            </h4>
+            <h4 style="margin-bottom: -6px">
+                Gusti Roby Azwar, S.AP
+            </h4>
+            <hr>
+            <h6 style="margin-top: -6px">
+                Kepala UPPD Kandangan
+                kasi pelayanan PKB BBNKB
+            </h6>
+        </div>
     </div>
-</div>
 </body>
 
 </html>

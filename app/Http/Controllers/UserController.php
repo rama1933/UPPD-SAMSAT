@@ -77,12 +77,9 @@ class UserController extends Controller
         ]);
 
         $validator_bio = Validator::make(request()->all(), [
-            'nik' => 'required',
             'nama' => 'required',
             'no_hp' => 'required',
             'alamat' => 'required',
-            'tempat_lahir' => 'required',
-            'tanggal_lahir' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -153,6 +150,7 @@ class UserController extends Controller
         } else {
             return response()->json(
                 [
+                    'id' => $data->id,
                     'nama' => $data->nama,
                     'no_hp' => $data->no_hp,
                     'alamat' => $data->alamat,

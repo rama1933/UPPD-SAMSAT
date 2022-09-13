@@ -101,6 +101,10 @@ Route::middleware('role:admin')->group(function () {
             Route::prefix('/kwitansi')->group(function () {
                 Route::get('/', [App\Http\Controllers\TrxPendaftaranController::class, 'indexadminkwitansi'])->name('kwitansiadmin.index');
             });
+
+            Route::prefix('/identitas')->group(function () {
+                Route::get('/', [App\Http\Controllers\TrxPendaftaranController::class, 'indexpendaftaranadminidentitas'])->name('pendaftaranadminidentitas.index');
+            });
         });
 
         Route::prefix('/pdf')->group(function () {
@@ -144,6 +148,8 @@ Route::middleware('role:admin')->group(function () {
                 Route::get('/detail/{id}', [App\Http\Controllers\PdfController::class, 'indextrxpendaftaranpdfdetail'])->name('pdf.trxpendaftarandetail');
                 Route::get('/selesai', [App\Http\Controllers\PdfController::class, 'indextrxpendaftaranpdfselesai'])->name('pdf.trxpendaftaranselesai');
                 Route::get('/kwitansi/{id}', [App\Http\Controllers\PdfController::class, 'indextrxpendaftaranpdfkwitansi'])->name('pdf.trxpendaftarankwitansi');
+                Route::get('/identitas', [App\Http\Controllers\PdfController::class, 'indextrxpendaftaranidentitaspdf'])->name('pdf.trxpendaftaranidentitas');
+                Route::get('/detail/identitas/{id}', [App\Http\Controllers\PdfController::class, 'indextrxpendaftaranidentitaspdfdetail'])->name('pdf.trxpendaftaranidentitasdetail');
             });
         });
     });
@@ -155,7 +161,7 @@ Route::middleware('role:admin')->group(function () {
 Route::middleware('role:user')->group(function () {
     Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'indexuser'])->name('home.user');
     Route::get('/show', [App\Http\Controllers\MasterController::class, 'showdata'])->name('dashboard.show');
-    Route::post('/update', [App\Http\Controllers\MasterController::class, 'updatebiodata'])->name('dahsboard.update');
+    Route::post('/update', [App\Http\Controllers\MasterController::class, 'updatedealer'])->name('dahsboard.update');
     Route::get('laporan', [App\Http\Controllers\PdfController::class, 'indexlaporanuser'])->name('laporan.user');
 
     Route::prefix('/pendaftaran')->group(function () {
@@ -166,6 +172,7 @@ Route::middleware('role:user')->group(function () {
         Route::post('/update', [App\Http\Controllers\PendaftaranController::class, 'updatependaftaran'])->name('pendaftaran.update');
         Route::post('/store', [App\Http\Controllers\PendaftaranController::class, 'storependaftaran'])->name('pendaftaran.store');
         Route::post('/harga', [App\Http\Controllers\PendaftaranController::class, 'hargapendaftaran'])->name('pendaftaran.harga');
+        Route::post('/filter', [App\Http\Controllers\UserController::class, 'filterdata'])->name('pendafraran.filter');
     });
 
     Route::prefix('/kwitansi')->group(function () {

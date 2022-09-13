@@ -29,6 +29,7 @@ class PendaftaranController extends Controller
     public function indexpendaftaran()
     {
         $data['dealer'] = $this->serviceMaster->getDataDealer();
+        $data['biodata'] = $this->serviceMaster->getDataBiodata();
         $data['tipe'] = $this->serviceMaster->getDataType();
         return view('user.pendaftaran.pendaftaran.index', $data);
     }

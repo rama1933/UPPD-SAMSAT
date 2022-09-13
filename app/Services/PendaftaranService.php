@@ -29,24 +29,57 @@ class PendaftaranService
     public static function storePendafataran(array $data)
     {
 
-        $pendaftaran = DB::table('tbl_pendaftaran')->insertGetId([
-            "user_id" => $data['user_id'],
-            "biodata_id" => $data['biodata_id'],
-            "dealer_id" => $data['dealer_id'],
-            "type_id" => $data['type_id'],
-            "warna" => $data['warna'],
-            "tahun" => $data['tahun'],
-            "tanggal" =>  now(),
-            "created_at" => now(),
-            "updated_at" => now(),
-        ]);
+        if ($data['biodata_id'] == null) {
 
-        TrxPendaftaran::create([
-            'pendaftaran_id' => $pendaftaran,
-            'created_at' =>  now(),
-            'updated_at' => now(),
-        ]);
-        return true;
+            $bio = DB::table('tbl_biodata')->insertGetId([
+                "nik" => $data['nik'],
+                "nama" => $data['nama'],
+                "no_hp" => $data['no_hp'],
+                "alamat" => $data['alamat'],
+                "tanggal_lahir" => $data['tanggal_lahir'],
+                "tempat_lahir" => $data['tempat_lahir'],
+                "created_at" => now(),
+                "updated_at" => now()
+            ]);
+
+            $pendaftaran = DB::table('tbl_pendaftaran')->insertGetId([
+                "user_id" => $data['user_id'],
+                "biodata_id" => $bio,
+                "dealer_id" => $data['dealer_id'],
+                "type_id" => $data['type_id'],
+                "warna" => $data['warna'],
+                "tahun" => $data['tahun'],
+                "tanggal" =>  now(),
+                "created_at" => now(),
+                "updated_at" => now(),
+            ]);
+
+            TrxPendaftaran::create([
+                'pendaftaran_id' => $pendaftaran,
+                'created_at' =>  now(),
+                'updated_at' => now(),
+            ]);
+            return true;
+        } else {
+            $pendaftaran = DB::table('tbl_pendaftaran')->insertGetId([
+                "user_id" => $data['user_id'],
+                "biodata_id" => $data['biodata_id'],
+                "dealer_id" => $data['dealer_id'],
+                "type_id" => $data['type_id'],
+                "warna" => $data['warna'],
+                "tahun" => $data['tahun'],
+                "tanggal" =>  now(),
+                "created_at" => now(),
+                "updated_at" => now(),
+            ]);
+
+            TrxPendaftaran::create([
+                'pendaftaran_id' => $pendaftaran,
+                'created_at' =>  now(),
+                'updated_at' => now(),
+            ]);
+            return true;
+        }
     }
 
     public static function updatePendaftaran($id, array $data)
@@ -54,7 +87,6 @@ class PendaftaranService
         $find = Pendaftaran::find($id);
         $toward =
             [
-                "dealer_id" => $data['dealer_id'],
                 "type_id" => $data['type_id'],
                 "warna" => $data['warna'],
                 "tahun" => $data['tahun'],

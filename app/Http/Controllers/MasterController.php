@@ -205,6 +205,7 @@ class MasterController extends Controller
                     'id' => $data->id,
                     'nama' => $data->nama,
                     'alamat' => $data->alamat,
+                    'no_hp' => $data->no_hp,
                 ]
             );
         } elseif ($request->type == 'profile') {

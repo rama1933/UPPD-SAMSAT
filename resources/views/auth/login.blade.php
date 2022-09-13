@@ -11,6 +11,12 @@
     <link rel="stylesheet" href="{{ asset('node_modules/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('node_modules/izitoast/dist/css/iziToast.min.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+    {{-- <style>
+        .select2-container {
+            border: 1px solid grey;
+            padding: 5px;
+        }
+    </style> --}}
 
 
 </head>
@@ -28,7 +34,7 @@
 
                     <div class="heading">
                         <hr>
-                        <p >Selamat Datang di-</p>
+                        <p>Selamat Datang di-</p>
                         <h1>Aplikasi Pendaftaran Kendaraan Bermotor Baru</h1>
                         <p style="margin-top: -20px">UPPD SAMSAT KANDANGAN</p>
                         <hr>
@@ -46,20 +52,46 @@
 
                     <!-- Login Form -->
                     <div class="login form-peice switched">
-                   <form class="login-form" id="form-create" method="POST" action="{{ route('register.store') }}">
-                    @csrf
+                        <form class="login-form" id="form-create" method="POST" action="{{ route('register.store') }}">
+                            @csrf
 
-                        <div class="form-group">
-                            <label for="name">Username</label>
-                            <input type="text" name="username" id="name" class="name" required>
-                        </div>
+                            {{-- <div class="form-group">
+                                <select name="dealer" id="dealer" class="form-control select2" required>
+                                    <option value="">Pilih Dealer</option>
+                                    @foreach ($dealer as $dealer)
+                                        <option value="{{ $dealer->id }}">{{ $dealer->nama }}</option>
+                                    @endforeach
+                                </select>
+                            </div> --}}
 
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" name="password" id="password" class="password" required>
-                        </div>
 
-                        <div class="form-group">
+
+                            <div class="form-group">
+                                <label for="name">Nama Dealer</label>
+                                <input type="text" name="nama" id="name" class="name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Alamat</label>
+                                <input type="text" name="alamat" id="alamat" class="alamat" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">No hp</label>
+                                <input type="text" name="no_hp" id="no_hp" class="no_hp" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Username</label>
+                                <input type="text" name="username" id="name" class="name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" name="password" id="password" class="password" required>
+                            </div>
+
+                            {{-- <div class="form-group">
                             <div class="row">
                             <div class="col-md-10">
                             <label for="nik">NIK</label>
@@ -93,13 +125,13 @@
                         <div class="form-group">
                             <label for="tempat_lahir">Tanggal Lahir</label>
                             <input id="tanggal_lahir" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="tanggal_lahir" name="tanggal_lahir" readonly />
-                        </div>
+                        </div> --}}
 
-                        <div class="CTA">
-                            <input type="submit" value="Daftar" id="submit">
-                            <a href="#" class="switch">Login</a>
-                        </div>
-                    </form>
+                            <div class="CTA">
+                                <input type="submit" value="Daftar" id="submit">
+                                <a href="#" class="switch">Login</a>
+                            </div>
+                        </form>
                     </div><!-- End Login Form -->
 
 
@@ -108,8 +140,8 @@
                         <form class="login-form" method="POST" action="{{ route('login') }}">
                             <div class="col-md-12" style="text-align: center;margin-top:-100px">
                                 <hr>
-                                <img class="mb-3" style="width: 100px" alt="100x100" src="{{ url('') }}/logo/prov.png"
-                                    data-holder-rendered="true">
+                                <img class="mb-3" style="width: 100px" alt="100x100"
+                                    src="{{ url('') }}/logo/prov.png" data-holder-rendered="true">
 
                                 <h4>SILAHKAN LOGIN</h4>
                                 <hr>
@@ -150,74 +182,89 @@
     <script src="{{ asset('') }}paper/assets/js/core/bootstrap.min.js"></script>
     <script src="{{ asset('plugins/jquery.form.min.js') }}"></script>
     <script src="{{ asset('') }}login-form/dist/script.js"></script>
-    <script src="{{asset('node_modules/sweetalert/dist/sweetalert.min.js')}}"></script>
+    <script src="{{ asset('node_modules/sweetalert/dist/sweetalert.min.js') }}"></script>
     <script src="{{ asset('node_modules/izitoast/dist/js/iziToast.min.js') }}"></script>
+    <script src="{{ asset('node_modules/select2/dist/js/select2.full.min.js') }}"></script>
     <script>
-        $('#periksa').on('click', function(e) {
-        e.preventDefault()
-        let nik = $("#nik").val()
-        // console.log(nik)
-
-        $.ajax({
-        url: window.location.origin + '/filter',
-        method: "POST",
-        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-        data: { nik: nik },
-        success: function(res) {
-        if (res.status == 'empty') {
-        swal('Data Tidak Ditemukan Silahkan Isi Biodata', '', 'error');
-        $('#nama').prop("readonly", false);
-        $('#no_hp').prop("readonly", false);
-        $('#alamat').prop("readonly", false);
-        $('#no_hp').prop("readonly", false);
-        $('#tempat_lahir').prop("readonly", false);
-        $('#tanggal_lahir').prop("readonly", false);
-        } else {
-        swal('Data Ditemukan', '', 'success');
-        $('#nama').prop("readonly", false);
-        $('#no_hp').prop("readonly", false);
-        $('#alamat').prop("readonly", false);
-        $('#no_hp').prop("readonly", false);
-        $('#tempat_lahir').prop("readonly", false);
-        $('#tanggal_lahir').prop("readonly", false);
-        $('#nama').empty();
-        $('#nohp').empty();
-        $('#alamat').empty();
-        $('#tempat_lahir').empty();
-        $('#tanggal_lahir').empty();
-        $('#no_hp').val(res['no_hp']);
-        $('#alamat').val(res['alamat']);
-        $('#tempat_lahir').val(res['tempat_lahir']);
-        $('#tanggal_lahir').val(res['tanggal_lahir']);
-        $('#nama').val(res['nama']);
-        }
-        }
+        $("select").select2({
+            tags: true,
+            createTag: function(params) {
+                return {
+                    id: params.term,
+                    text: params.term,
+                    newOption: true
+                }
+            }
         });
+        $('#periksa').on('click', function(e) {
+            e.preventDefault()
+            let nik = $("#nik").val()
+            // console.log(nik)
+
+            $.ajax({
+                url: window.location.origin + '/filter',
+                method: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    nik: nik
+                },
+                success: function(res) {
+                    if (res.status == 'empty') {
+                        swal('Data Tidak Ditemukan Silahkan Isi Biodata', '', 'error');
+                        $('#nama').prop("readonly", false);
+                        $('#no_hp').prop("readonly", false);
+                        $('#alamat').prop("readonly", false);
+                        $('#no_hp').prop("readonly", false);
+                        $('#tempat_lahir').prop("readonly", false);
+                        $('#tanggal_lahir').prop("readonly", false);
+                    } else {
+                        swal('Data Ditemukan', '', 'success');
+                        $('#nama').prop("readonly", false);
+                        $('#no_hp').prop("readonly", false);
+                        $('#alamat').prop("readonly", false);
+                        $('#no_hp').prop("readonly", false);
+                        $('#tempat_lahir').prop("readonly", false);
+                        $('#tanggal_lahir').prop("readonly", false);
+                        $('#nama').empty();
+                        $('#nohp').empty();
+                        $('#alamat').empty();
+                        $('#tempat_lahir').empty();
+                        $('#tanggal_lahir').empty();
+                        $('#no_hp').val(res['no_hp']);
+                        $('#alamat').val(res['alamat']);
+                        $('#tempat_lahir').val(res['tempat_lahir']);
+                        $('#tanggal_lahir').val(res['tanggal_lahir']);
+                        $('#nama').val(res['nama']);
+                    }
+                }
+            });
 
         })
 
         $('#form-create').on('submit', function(e) {
-        e.preventDefault()
+            e.preventDefault()
 
-        $("#form-create").ajaxSubmit({
-        success: function(res) {
-        if (res.status == "failed") {
-        swal('Username sudah terdaftar', '', 'error');
-        } else if (res.status == "required") {
-        swal('Form tidak boleh kosong', '', 'error');
+            $("#form-create").ajaxSubmit({
+                success: function(res) {
+                    if (res.status == "failed") {
+                        swal('Username sudah terdaftar', '', 'error');
+                    } else if (res.status == "required") {
+                        swal('Form tidak boleh kosong', '', 'error');
 
-        } else if (res.status = "success") {
+                    } else if (res.status = "success") {
 
-        // location.reload();
-        swal('Data Berhasil Di Simpan', '', 'success');
-        //set semua ke default
-        $("#form-create input:not([name='_token']").val('')
-        setTimeout(location.reload.bind(location), 1000);
+                        // location.reload();
+                        swal('Data Berhasil Di Simpan', '', 'success');
+                        //set semua ke default
+                        $("#form-create input:not([name='_token']").val('')
+                        setTimeout(location.reload.bind(location), 1000);
 
-        }
-        }
-        })
-        return true;
+                    }
+                }
+            })
+            return true;
 
         })
     </script>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use PDF;
 use App\Models\Biodata;
+use App\Models\Dealer;
 use App\Models\Pegawai;
 use App\Models\Pendaftaran;
 use App\Models\Profile;
@@ -129,8 +130,8 @@ class PdfController extends Controller
     public function indexuserpdfdetail(Request $request, $id)
     {
         $id = $request->id;
-        $data['data'] = Biodata::where('id', $id)->get();
-        $data['user'] = User::where('biodata_id', $id)->get();
+        $data['data'] = Dealer::where('id', $id)->get();
+        $data['user'] = User::where('dealer_id', $id)->get();
         $pdf = PDF::loadview('pdf.user.detail', $data)->setPaper('a4', 'landscape');
         return $pdf->stream('user.pdf');
     }
@@ -145,11 +146,27 @@ class PdfController extends Controller
         return $pdf->stream('pendaftaran.pdf');
     }
 
+    public function indextrxpendaftaranidentitaspdf(Request $request)
+    {
+        $data['data'] = $this->TrxPendaftaranService->getDataTrxPendaftaran();
+        // dd($data['data']);
+        $pdf = PDF::loadview('pdf.trxpendaftaran.identitas.index', $data)->setPaper('a4', 'landscape');
+        return $pdf->stream('pendaftaran.pdf');
+    }
+
     public function indextrxpendaftaranpdfdetail(Request $request, $id)
     {
         $id = $request->id;
         $data['data'] = Pendaftaran::with('dealer')->with('type')->where('id', $id)->get();
         $pdf = PDF::loadview('pdf.trxpendaftaran.pendaftaran.detail', $data)->setPaper('a4', 'landscape');
+        return $pdf->stream('pendaftaran.pdf');
+    }
+
+    public function indextrxpendaftaranidentitaspdfdetail(Request $request, $id)
+    {
+        $id = $request->id;
+        $data['data'] = Pendaftaran::with('dealer')->with('type')->where('id', $id)->get();
+        $pdf = PDF::loadview('pdf.trxpendaftaran.identitas.detail', $data)->setPaper('a4', 'landscape');
         return $pdf->stream('pendaftaran.pdf');
     }
 

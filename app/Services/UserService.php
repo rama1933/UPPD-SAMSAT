@@ -32,57 +32,31 @@ class UserService
     public static function storeUser(array $data)
     {
         $trans = DB::transaction(function () use ($data) {
-            $date_input = strtotime($data['tanggal_lahir']);
-            $date = date('Y-m-d', $date_input);
+            // $date_input = strtotime($data['tanggal_lahir']);
+            // $date = date('Y-m-d', $date_input);
 
-            $cek = Biodata::where('nik', $data['nik'])->get();
-            if ($cek->isEmpty()) {
-                $bio = DB::table('tbl_biodata')->insertGetId([
-                    'nik' => $data['nik'],
-                    'nama' => $data['nama'],
-                    'no_hp' => $data['no_hp'],
-                    'alamat' => $data['alamat'],
-                    'tempat_lahir' => $data['tempat_lahir'],
-                    'tanggal_lahir' => $date,
-                    'created_at' =>  now(),
-                    'updated_at' => now(),
-                ]);
+            // $cek = Biodata::where('nik', $data['nik'])->get();
+            // if ($cek->isEmpty()) {
+            $dealer = DB::table('tbl_master_dealer')->insertGetId([
+                'nama' => $data['nama'],
+                'no_hp' => $data['no_hp'],
+                'alamat' => $data['alamat'],
+                'created_at' =>  now(),
+                'updated_at' => now(),
+            ]);
 
-                $user = User::create([
-                    'username' => $data['username'],
-                    'name' => $data['nama'],
-                    'password' => bcrypt($data['password']),
-                    'role' => 'user',
-                    'biodata_id' => $bio,
-                    'created_at' =>  now(),
-                    'updated_at' => now(),
-                ]);
-                $user->assignRole('user');
-            } else {
-                $bio = DB::table('tbl_biodata')->where('nik', $data['nik'])->update(
-                    [
-                        'nik' => $data['nik'],
-                        'nama' => $data['nama'],
-                        'no_hp' => $data['no_hp'],
-                        'alamat' => $data['alamat'],
-                        'tempat_lahir' => $data['tempat_lahir'],
-                        'tanggal_lahir' => $date,
-                        'created_at' =>  now(),
-                        'updated_at' => now(),
-                    ]
-                );
+            // dd($dealer);
 
-                $user = User::create([
-                    'username' => $data['username'],
-                    'name' => $data['nama'],
-                    'password' => bcrypt($data['password']),
-                    'role' => 'user',
-                    'biodata_id' => $cek[0]['id'],
-                    'created_at' =>  now(),
-                    'updated_at' => now(),
-                ]);
-                $user->assignRole('user');
-            }
+            $user = User::create([
+                'username' => $data['username'],
+                'name' => $data['nama'],
+                'password' => bcrypt($data['password']),
+                'role' => 'user',
+                'dealer_id' => $dealer,
+                'created_at' =>  now(),
+                'updated_at' => now(),
+            ]);
+            $user->assignRole('user');
         });
         return true;
     }

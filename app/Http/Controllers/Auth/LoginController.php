@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Dealer;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -65,6 +66,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('auth.login');
+        $data['dealer'] = Dealer::get();
+        return view('auth.login', $data);
     }
 }

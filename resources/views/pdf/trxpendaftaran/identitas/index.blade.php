@@ -29,7 +29,8 @@
     td {
         border: 1px solid;
         border-collapse: collapse;
-        padding-left: 20px;
+        padding-left: 5px;
+        padding-right: 5px;
     }
 
     header {
@@ -76,31 +77,60 @@
         </div>
     </div>
     <hr style="margin-top: -10px">
-    <h3 style="text-align: center;">DATA USER</h3>
+    <h3 style="text-align: center;">DATA IDENTITAS KEPEMILIKAN</h3>
     <table id="table" style="width: 100%">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>NIK</th>
+                <th>Nama</th>
+                <th>Nama Dealer</th>
+                <th>Tipe / Jenis / Merk</th>
+                {{-- <th>Merk</th> --}}
+                <th>Warna</th>
+                {{-- <th>Tahun Pembuatan</th>
+                <th>Biaya Pembuatan</th>
+                <th>Tgl Pendaftaran</th> --}}
+                <th>Nopol</th>
+                {{-- <th>Tgl STNK</th>
+                <th>Tgl Pajak</th> --}}
+            </tr>
+        </thead>
         <tbody>
-            @foreach ($user as $user)
-                <tr>
-                    <th style="text-align: left">Username</th>
-                    <td style="text-align: center">:</td>
-                    <td style="padding-left: 10px">{{ $user->username }}</td>
-                </tr>
-            @endforeach
             @foreach ($data as $data)
                 <tr>
-                    <th style="text-align: left">Nama Dealer</th>
-                    <td style="text-align: center">:</td>
-                    <td style="padding-left: 10px">{{ $data->nama }}</td>
-                </tr>
-                <tr>
-                    <th style="text-align: left">No Hp</th>
-                    <td style="text-align: center">:</td>
-                    <td style="padding-left: 10px">{{ $data->no_hp }}</td>
-                </tr>
-                <tr>
-                    <th style="text-align: left">Alamat</th>
-                    <td style="text-align: center">:</td>
-                    <td style="padding-left: 10px">{{ $data->alamat }}</td>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $data->biodata->nik }}</td>
+                    <td>{{ $data->biodata->nama }}</td>
+                    <td>{{ $data->dealer->nama }}</td>
+                    <td>{{ $data->type->type }}/ {{ $data->type->jenis }}/ {{ $data->type->merk }}</td>
+                    {{-- <td>{{ $data->merk->nama }}</td> --}}
+                    <td>{{ $data->warna }}</td>
+                    {{-- <td>{{ $data->tahun }}</td> --}}
+                    {{-- <td>{{ $data->type->harga }}</td> --}}
+                    {{-- <td>{{ date('d-m-Y', strtotime($data->tanggal)) }}</td> --}}
+                    <td>
+                        @if ($data->pendaftarans->nopol == null or $data->pendaftarans->nopol == '')
+                            Belum Diverifikasi
+                        @else
+                            {{ $data->pendaftarans->nopol }}
+                        @endif
+                    </td>
+                    {{-- <td>
+                        @if ($data->pendaftarans->tgl_stnk == null or $data->pendaftarans->tgl_stnk == '')
+                            Belum Diverifikasi
+                        @else
+                            {{ date('d-m-Y', strtotime($data->pendaftarans->tgl_stnk)) }}
+                        @endif
+                    </td>
+                    <td>
+                        @if ($data->pendaftarans->tgl_pajak == null or $data->pendaftarans->tgl_pajak == '')
+                            Belum Diverifikasi
+                        @else
+                            {{ date('d-m-Y', strtotime($data->pendaftarans->tgl_pajak)) }}
+                        @endif
+                    </td> --}}
+
                 </tr>
             @endforeach
         </tbody>

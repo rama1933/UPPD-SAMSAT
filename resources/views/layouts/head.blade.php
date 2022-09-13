@@ -15,10 +15,16 @@
     <link href="{{ asset('') }}paper/assets/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{ asset('') }}paper/assets/demo/demo.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{asset('node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}">
-    <link rel="stylesheet" href="{{asset('node_modules/datatables.net-select-bs4/css/select.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('node_modules/datatables.net-select-bs4/css/select.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('node_modules/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('node_modules/izitoast/dist/css/iziToast.min.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <style>
+        .select2-container {
+            border: 1px solid grey;
+            padding: 5px;
+        }
+    </style>
     @yield('custom_css')
 </head>

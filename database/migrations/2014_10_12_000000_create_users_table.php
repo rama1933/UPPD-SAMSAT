@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('name');
             $table->string('password');
-            $table->string('biodata_id')->nullable();
+            $table->string('dealer_id')->nullable();
             $table->timestamps();
         });
     }

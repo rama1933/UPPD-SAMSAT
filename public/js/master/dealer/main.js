@@ -31,6 +31,10 @@ function datatable() {
                 name: 'alamat'
             },
             {
+                data: 'no_hp',
+                name: 'no_hp'
+            },
+            {
                 data: 'button',
                 name: 'button'
             }
@@ -80,6 +84,7 @@ function edit(id) {
             $('#idEdit').val(id);
             $('#namaEdit').val(response['nama']);
             $('#alamatEdit').val(response['alamat']);
+            $('#no_hpEdit').val(response['no_hp']);
         }
     })
 }

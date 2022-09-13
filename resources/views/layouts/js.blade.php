@@ -10,10 +10,17 @@
 <script src="{{ asset('') }}paper/assets/js/plugins/bootstrap-notify.js"></script>
 <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="{{ asset('') }}paper/assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
-<script src="{{asset('node_modules/datatables/media/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('node_modules/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('plugins/jquery.form.min.js') }}"></script>
 <script src="{{ asset('node_modules/select2/dist/js/select2.full.min.js') }}"></script>
-<script src="{{asset('node_modules/sweetalert/dist/sweetalert.min.js')}}"></script>
+<script src="{{ asset('node_modules/sweetalert/dist/sweetalert.min.js') }}"></script>
 <script src="{{ asset('node_modules/izitoast/dist/js/iziToast.min.js') }}"></script>
+<script>
+    if (jQuery().select2) {
+        $(".select2").select2({
+            maximumSelectionLength: 3
+        });
+    }
+</script>
 @yield('custom_js')

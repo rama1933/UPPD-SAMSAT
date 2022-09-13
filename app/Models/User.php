@@ -22,7 +22,7 @@ class User extends Authenticatable
         'username',
         'name',
         'password',
-        'biodata_id'
+        'dealer_id'
     ];
 
     /**

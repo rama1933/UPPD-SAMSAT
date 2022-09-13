@@ -106,6 +106,7 @@ class MasterService
             [
                 "nama" => $data['nama'],
                 "alamat" => $data['alamat'],
+                "no_hp" => $data['no_hp'],
                 "created_at" => now(),
                 "updated_at" => now(),
             ]
@@ -208,6 +209,7 @@ class MasterService
             [
                 "nama" => $data['nama'],
                 "alamat" => $data['alamat'],
+                "no_hp" => $data['no_hp'],
                 "created_at" => now(),
                 "updated_at" => now()
             ];

@@ -46,6 +46,16 @@ class TrxPendaftaranController extends Controller
         return view('admin.pendaftaran.kwitansi.index', $data);
     }
 
+    public function indexpendaftaranadminidentitas()
+    {
+        $data['dealer'] = $this->serviceMaster->getDataDealer();
+        $data['tipe'] = $this->serviceMaster->getDataType();
+
+        return view('admin.pendaftaran.identitas.index', $data);
+    }
+
+
+
     public function data(Request $request)
     {
 
@@ -140,6 +150,11 @@ class TrxPendaftaranController extends Controller
                                    ';
                 }
             })
+            ->addColumn('buttonidentitas', function ($data) use ($request) {
+                return '
+                 <a href="/admin/pdf/trxpendaftaran/detail/identitas/' . $data->id . '"  class="btn btn-sm btn-flat btn-warning" target="_blank" title="Unduh Dokumen (PDF)"><i class="fa fa-print"></i></a>
+                                   ';
+            })
             ->addColumn('kwitansi', function ($data) use ($request) {
                 if ($request->type == 'selesai') {
                     $cek = $data->pendaftarans->nopol;
@@ -154,7 +169,7 @@ class TrxPendaftaranController extends Controller
                     }
                 }
             })
-            ->rawColumns(['button', 'jenis', 'type', 'merk', 'nik', 'warna', 'tahun', 'harga', 'tanggal', 'kwitansi'])
+            ->rawColumns(['button', 'jenis', 'type', 'merk', 'nik', 'warna', 'tahun', 'harga', 'tanggal', 'kwitansi', 'buttonidentitas'])
             ->make(true);
     }
 
